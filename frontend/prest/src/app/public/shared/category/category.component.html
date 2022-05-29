@@ -1,0 +1,8 @@
+<div class="d-flex flex-nowrap" *ngIf="categories">
+  <ng-container *ngFor="let category of categories">
+    <div (select)="selected(category)">
+      <img src="{{category.img}}">
+      <span>{{category.label}}</span>
+    </div>
+  </ng-container>
+</div>

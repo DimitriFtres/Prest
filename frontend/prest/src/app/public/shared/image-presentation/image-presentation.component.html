@@ -1,0 +1,27 @@
+<!-- Background image -->
+<ng-container *ngIf="imageUrl">
+  <div
+    class="p-5 text-center bg-image d-flex justify-content-center align-items-center"
+    [style.background-image]="'url(' + imageUrl + ')'"
+    style="
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 400px;
+      "
+  >
+    <div class="mask w-100" style="background-color: rgba(0, 0, 0, 0.6);">
+      <div class="d-flex justify-content-center align-items-center h-100 py-5">
+        <div class="text-white pb-2">
+          <h1 class="mb-3">Prest</h1>
+          <h4 class="mb-3">Lorem ipsum dolor sit amet.</h4>
+          <ng-container *ngIf="pathTo">
+            <a class="btn btn-outline-light btn-lg bg-primary" href="#"
+            >Call to action</a
+            >
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

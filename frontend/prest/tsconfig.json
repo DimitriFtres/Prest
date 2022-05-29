@@ -1,0 +1,50 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "@bootstrap/": ["node_modules/bootstrap/scss/"],
+      "@address/*": ["app/models/address/*"],
+      "@category/*": ["app/models/category/*"],
+      "@commentary/*": ["app/models/commentary/*"],
+      "@common/*": ["app/models/common/*"],
+      "@restaurant/*": ["app/models/restaurant/*"],
+      "@user/*": ["app/models/user/*"],
+      "@userRestaurant/*": ["app/models/userRestaurant/*"],
+      "@service/address/*": ["app/service/address/*"],
+      "@service/category/*": ["app/service/category/*"],
+      "@service/commentary/*": ["app/service/commentary/*"],
+      "@service/common/*": ["app/service/common/*"],
+      "@service/restaurant/*": ["app/service/restaurant/*"],
+      "@service/user/*": ["app/service/user/*"],
+      "@service/userRestaurant/*": ["app/service/userRestaurant/*"],
+      "@service/httpService/*": ["app/service/httpService/*"],
+      "@service/apiService/*": ["app/service/apiService/*"],
+      "@home/*": ["app/public/public/home/*"]
+    },
+    "outDir": "./dist/out-tsc",
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2017",
+    "module": "es2020",
+    "lib": [
+      "es2018",
+      "dom"
+    ]
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  }
+}

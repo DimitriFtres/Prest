@@ -1,0 +1,19 @@
+<app-category (category)="categoryChange($event)"></app-category>
+<section id="list-restaurant">
+  <form>
+    <input type="text" placeholder="trad a faire : nom" (input)="labelChange($event)">
+    <input type="text" placeholder="trad a faire : ville" (input)="cityChange($event)">
+  </form>
+  <ng-container *ngIf="restaurants">
+    <ng-container *ngFor="let restaurant in restaurants">
+      <div class="card text-center" style="width: 18rem;">
+        <img src="{{restaurant.image}}" class="card-img-top" alt="{{restaurant.label}}">
+        <div class="card-body">
+          <h5 class="card-title">{{restaurant.label}}</h5>
+          <p class="card-text">{{restaurant.description}}</p>
+          <a href="/restaurant/{{restaurant.id}}" class="btn btn-primary">Voir plus d'information</a>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+</section>
