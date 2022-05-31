@@ -1,8 +1,14 @@
 <app-category (category)="categoryChange($event)"></app-category>
-<section id="list-restaurant">
-  <form>
-    <input type="text" placeholder="trad a faire : nom" (input)="labelChange($event)">
-    <input type="text" placeholder="trad a faire : ville" (input)="cityChange($event)">
+<section id="list-restaurant" class="w-90 mx-auto">
+  <form class="d-flex">
+    <div class="input-group input-group-lg">
+      <span class="input-group-text bg-primary" id="input-restaurant-name">Nom du restaurant</span>
+      <input type="text" class="form-control" (input)="labelChange($event)" placeholder="trad a faire : nom" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+    </div>
+    <div class="input-group input-group-lg">
+      <span class="input-group-text bg-primary" id="input-restaurant-city">Ville du restaurant</span>
+      <input type="text" class="form-control" (input)="cityChange($event)"  placeholder="trad a faire : ville" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+    </div>
   </form>
   <ng-container *ngIf="restaurants">
     <ng-container *ngFor="let restaurant in restaurants">

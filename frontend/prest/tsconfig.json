@@ -21,7 +21,10 @@
       "@service/userRestaurant/*": ["app/service/userRestaurant/*"],
       "@service/httpService/*": ["app/service/httpService/*"],
       "@service/apiService/*": ["app/service/apiService/*"],
-      "@home/*": ["app/public/public/home/*"]
+      "@home/*": ["app/public/public/home/*"],
+      "@signin/*": ["app/public/public/signin/*"],
+      "@signup/*": ["app/public/public/signup/*"],
+      "@notFound/*": ["app/public/public/not-found/*"]
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,

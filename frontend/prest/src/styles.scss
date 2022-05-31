@@ -2,7 +2,7 @@
 
 /* Importing Bootstrap SCSS file. */
 
-$orange: #ff9900;
+$orange: #ff7800;
 $primary: $orange;
 $theme-colors: (
   "primary": $orange
@@ -13,5 +13,9 @@ $font-weight-normal: 500;
 
 @import "~mdb-ui-kit/src/scss/bootstrap/bootstrap";
 
+
+.w-90{
+  width: 90%;
+}
 
 

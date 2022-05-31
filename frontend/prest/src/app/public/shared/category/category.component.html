@@ -1,4 +1,4 @@
-<div class="d-flex flex-nowrap" *ngIf="categories">
+<div class="d-flex flex-nowrap my-5" *ngIf="categories">
   <ng-container *ngFor="let category of categories">
     <div (select)="selected(category)">
       <img src="{{category.img}}">
@@ -6,3 +6,4 @@
     </div>
   </ng-container>
 </div>
+<hr/>
