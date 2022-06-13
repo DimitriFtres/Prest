@@ -8,4 +8,5 @@ export interface Commentary {
   text: String;
   restaurant: Restaurant;
   user: User;
+  date: Date;
 }

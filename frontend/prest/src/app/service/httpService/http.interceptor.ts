@@ -2,10 +2,11 @@ import {Injectable} from '@angular/core';
 import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import {catchError, switchMap} from 'rxjs/operators';
-import {AuthService} from '@security/service/auth.service';
-import {isNil} from 'lodash';
-import {RefreshPayload} from '@security/model';
-import {ApiResponse, ApiUriEnum} from '@shared/model';
+import {AuthService} from "../../security/service/auth.service";
+import {ApiUriEnum} from "@common/enum";
+import {RefreshPayload} from "../../security/model";
+import {ApiResponse} from "@common/ApiResponse";
+import {isNil} from "lodash";
 
 @Injectable({
   providedIn: 'root'

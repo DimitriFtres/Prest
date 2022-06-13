@@ -9,4 +9,5 @@ export interface CommentaryUpdatePayload extends Payload
   text: String;
   restaurant: Restaurant;
   user: User;
+  date: Date;
 }

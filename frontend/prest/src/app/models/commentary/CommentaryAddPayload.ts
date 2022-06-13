@@ -8,4 +8,5 @@ export interface CommentaryAddPayload extends Payload
   text: String;
   restaurant: Restaurant;
   user: User;
+  date: Date;
 }

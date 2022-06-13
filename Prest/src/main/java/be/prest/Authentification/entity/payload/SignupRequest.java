@@ -21,8 +21,6 @@ public class SignupRequest{
     @NotBlank
     @Size(min = 6, max = 40)
     private String password;
-    @NotBlank
-    private User user;
 
     public ApiResponse isValid(){
         if(email == null ||email.isEmpty()){
@@ -33,8 +31,6 @@ public class SignupRequest{
             }
         }else if(password == null ||password.isEmpty()){
             return new ApiResponse(false, null, "api.signup.valid-error-password");
-        }else if(user == null){
-            return new ApiResponse(false, null, "api.signup.valid-error-user");
         }else{
             return new ApiResponse(true, this, null);
         }

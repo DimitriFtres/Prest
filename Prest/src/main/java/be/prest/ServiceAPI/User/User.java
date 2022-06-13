@@ -1,8 +1,10 @@
 package be.prest.ServiceAPI.User;
 
+import be.prest.Authentification.entity.*;
 import be.prest.ServiceAPI.Address.Address;
 import be.prest.ServiceAPI.Commentary.Commentary;
 import be.prest.ServiceAPI.User_Restaurant.UserRestaurant;
+import com.fasterxml.jackson.annotation.*;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -34,6 +36,11 @@ public class User {
     @JoinTable(name = "address_id")
     private List<Address> addresses;
 
+    @JsonIgnore
+    @OneToOne
+    @JoinColumn(name="id_credential")
+    private Credential credential;
+
     public User(UserUpdatePayload user)
     {
         this.id_user = user.getId_user();
@@ -41,6 +48,7 @@ public class User {
         this.commentaries = user.getCommentaries();
         this.userRestaurants = user.getUserRestaurants();
         this.addresses = user.getAddresses();
+        this.credential = user.getCredential();
     }
 
     public static class Builder
@@ -50,9 +58,15 @@ public class User {
         private List<Address> addresses;
         private List<Commentary> commentaries;
         private List<UserRestaurant> userRestaurants;
+        private Credential credential;
 
         public Builder setId(int id_user) {
             this.id_user = id_user;
+            return this;
+        }
+
+        public Builder setCredential(Credential credential) {
+            this.credential = credential;
             return this;
         }
 
@@ -78,7 +92,7 @@ public class User {
 
         public User build()
         {
-            return new User(id_user, nickname, commentaries, userRestaurants, addresses);
+            return new User(id_user, nickname, commentaries, userRestaurants, addresses, credential);
         }
     }
 

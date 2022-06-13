@@ -41,7 +41,6 @@ public class CredentialServiceImpl implements CredentialService {
                             .setEmail(request.getEmail())
                             .setPassword(encoder.encode(request.getPassword()))
                             .setActif(true)
-                            .setUser(request.getUser())
                             .build());
                     return new ApiResponse(true, credential, null);
                 } catch (Exception e) {

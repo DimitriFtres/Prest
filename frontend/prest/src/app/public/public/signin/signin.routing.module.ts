@@ -1,36 +1,31 @@
 import {RouterModule, Routes} from "@angular/router";
 import {NgModule} from "@angular/core";
-import {CommonModule} from "@angular/common";
 import {UserComponent} from "@signin/user/user.component";
 import {RestaurantComponent} from "@signin/restaurant/restaurant.component";
 
-let routes:Routes = [
+const routes:Routes = [
   {
     path: "",
-    component: UserComponent,
+    redirectTo : 'user',
     pathMatch: "full"
   },
   {
     path: "user",
-    redirectTo: "restaurant",
+    component: UserComponent,
     pathMatch: "full"
   },
   {
     path: "restaurant",
     component: RestaurantComponent,
     pathMatch: "full"
-  },
-  {
-    path: "**",
-    redirectTo: ""
   }
 ];
 
 @NgModule({
-  declarations: []
+  declarations: [
+  ]
   ,
   imports: [
-    CommonModule,
     RouterModule.forChild(routes)
   ],
   exports: [

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {AppComponent} from "./app.component";
-import {NotFoundComponent} from "@notFound/not-found/not-found.component";
+import {UserComponent} from "@signin/user/user.component";
+import {NewsComponent} from "./restaurant/news/news.component";
 
 const routes: Routes = [
   {
@@ -11,15 +11,22 @@ const routes: Routes = [
     //canActivate:
   },
   {
-    path: "signin",
-    loadChildren : () => import('@signin/signin.module').then(m => m.SigninModule),
+    path: "signin/user",
+    // loadChildren : () => import('./public/public/signin/signin.module').then(m => m.SigninModule),
+    component: UserComponent,
     pathMatch: "full"
   },
   {
-    path: "signup",
-    loadChildren : () => import('@signup/signup.module').then(m => m.SignupModule),
+    path: "signup/user",
+    // loadChildren : () => import('@signup/signup.module').then(m => m.SignupModule),
+    component: UserComponent,
     pathMatch: "full"
   },
+  {
+    path: "news",
+    component: NewsComponent,
+    pathMatch: "full"
+  }
   // {
   //   path: "**",
   //   component: NotFoundComponent,

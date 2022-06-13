@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { UserComponent } from './user/user.component';
 import { RestaurantComponent } from './restaurant/restaurant.component';
 import {SignupRoutingModule} from "@signup/signup.routing.module";
+import {HeaderModule} from "../../shared/header/header.module";
 
 
 
@@ -11,9 +12,10 @@ import {SignupRoutingModule} from "@signup/signup.routing.module";
     UserComponent,
     RestaurantComponent
   ],
-  imports: [
-    CommonModule,
-    SignupRoutingModule
-  ]
+    imports: [
+        CommonModule,
+        SignupRoutingModule,
+        HeaderModule
+    ]
 })
 export class SignupModule { }

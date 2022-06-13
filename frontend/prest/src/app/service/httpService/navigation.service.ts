@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {HttpService} from '@shared/service/http.service';
 import {Router} from '@angular/router';
 
 @Injectable({

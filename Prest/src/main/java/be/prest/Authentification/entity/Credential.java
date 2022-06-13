@@ -17,7 +17,7 @@ import javax.validation.constraints.*;
         uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class Credential {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id_credential;
 
     @NotNull
@@ -29,19 +29,13 @@ public class Credential {
     @JsonIgnore
     private String password;
 
-    @JsonIgnore
-    @OneToOne
-    @JoinColumn(name="id")
-    private User user;
-
     @NotNull
     private boolean actif;
 
-    public Credential(String email, String password, Boolean actif, User user) {
+    public Credential(String email, String password, Boolean actif) {
         this.email = email;
         this.password = password;
         this.actif = actif;
-        this.user = user;
     }
 
     public static class Builder
@@ -49,7 +43,6 @@ public class Credential {
         private int id_credential;
         private String email;
         private String password;
-        private User user;
         private boolean actif;
 
         public Builder setId(int id_credential) {
@@ -67,11 +60,6 @@ public class Credential {
             return this;
         }
 
-        public Builder setUser(User user) {
-            this.user = user;
-            return this;
-        }
-
         public Builder setActif(boolean actif) {
             this.actif = actif;
             return this;
@@ -79,7 +67,7 @@ public class Credential {
 
         public Credential build()
         {
-            return new Credential(id_credential, email, password, user, actif);
+            return new Credential(id_credential, email, password, actif);
         }
     }
 

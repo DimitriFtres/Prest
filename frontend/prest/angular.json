@@ -107,5 +107,8 @@
       }
     }
   },
-  "defaultProject": "prest"
+  "defaultProject": "prest",
+  "cli": {
+    "analytics": false
+  }
 }

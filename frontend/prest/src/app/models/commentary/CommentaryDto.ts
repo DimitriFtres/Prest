@@ -9,5 +9,6 @@ export interface CommentaryDto extends Dto
   text: String;
   restaurant: Restaurant;
   user: User;
+  date: Date;
 }
 

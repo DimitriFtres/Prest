@@ -1,5 +1,6 @@
 package be.prest.ServiceAPI.User;
 
+import be.prest.Authentification.entity.*;
 import be.prest.ServiceAPI.Address.Address;
 import be.prest.ServiceAPI.Commentary.Commentary;
 import be.prest.ServiceAPI.User_Restaurant.UserRestaurant;
@@ -18,5 +19,6 @@ public class UserCreatePayload {
     private List<Commentary> commentaries;
     private List<UserRestaurant> userRestaurants;
     private List<Address> addresses;
+    private Credential credential;
 
 }

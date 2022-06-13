@@ -32,7 +32,8 @@ public class UserController {
                         .setNickname(payload.getNickname())
                         .setAddresses(payload.getAddresses())
                         .setCommentaries(payload.getCommentaries())
-                        .setUserRestaurants(payload.getUserRestaurants()).build();
+                        .setUserRestaurants(payload.getUserRestaurants())
+                        .setCredential(payload.getCredential()).build();
                 User newUser = userRepository.save(user);
                 return new ApiResponse(true, newUser, BASE_CODE + "create.success");
             } catch (Exception e) {
