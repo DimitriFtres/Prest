@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.sql.*;
 
 @Data
 @Entity
@@ -21,6 +22,7 @@ public class Commentary {
     @NotNull
     private String note;
     private String text;
+    private Date date;
     @ManyToOne
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
@@ -34,6 +36,7 @@ public class Commentary {
         this.note = commentary.getNote();
         this.restaurant = commentary.getRestaurant();
         this.text = commentary.getText();
+        this.date = commentary.getDate();
         this.user = commentary.getUser();
 
     }
@@ -43,6 +46,7 @@ public class Commentary {
         private int id_commentary;
         private String note;
         private String text;
+        private Date date;
         private Restaurant restaurant;
         private User user;
 
@@ -61,6 +65,11 @@ public class Commentary {
             return this;
         }
 
+        public Builder setDate(Date date) {
+            this.date = date;
+            return this;
+        }
+
         public Builder setRestaurant(Restaurant restaurant) {
             this.restaurant = restaurant;
             return this;
@@ -73,7 +82,7 @@ public class Commentary {
 
         public Commentary build()
         {
-            return new Commentary(id_commentary, note, text, restaurant, user);
+            return new Commentary(id_commentary, note, text, date, restaurant, user);
         }
     }
 

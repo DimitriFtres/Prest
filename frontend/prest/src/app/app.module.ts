@@ -24,6 +24,7 @@ import { NewsComponent } from './restaurant/news/news.component';
 import { CommentaryComponent } from './restaurant/commentary/commentary.component';
 import { AddCommentaryComponent } from './restaurant/add-commentary/add-commentary.component';
 import { InformationComponent } from './restaurant/information/information.component';
+import {AddressToStringDirective} from "@directive/address";
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { InformationComponent } from './restaurant/information/information.compo
     CommentaryComponent,
     AddCommentaryComponent,
     InformationComponent,
+    AddressToStringDirective,
   ],
   imports: [
     BrowserModule,

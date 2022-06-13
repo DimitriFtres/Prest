@@ -24,7 +24,8 @@
       "@home/*": ["app/public/public/home/*"],
       "@signin/*": ["app/public/public/signin/*"],
       "@signup/*": ["app/public/public/signup/*"],
-      "@notFound/*": ["app/public/public/not-found/*"]
+      "@notFound/*": ["app/public/public/not-found/*"],
+      "@directive/*": ["app/directive/*"]
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,

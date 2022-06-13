@@ -1,0 +1,35 @@
+<app-header></app-header>
+
+<ng-container *ngIf="restaurant">
+  <app-image-presentation [url]="restaurant.image"></app-image-presentation>
+  <div class="d-flex flex-nowrap my-5">
+    <ng-container *ngFor="let information in informations">
+      <div (select)="informationSelected(information)">
+        <span>{{information}}</span>
+      </div>
+    </ng-container>
+  </div>
+
+  <ng-container *ngIf="informationToDisplay == null">
+    <app-news></app-news>
+    <app-commentary></app-commentary>
+    <app-add-commentary></app-add-commentary>
+  </ng-container>
+
+  <ng-container *ngIf="informationToDisplay == 'address'">
+    <app-information [information]="'addresse a faire'" [restaurant]="restaurant"></app-information>
+  </ng-container>
+
+  <ng-container *ngIf="informationToDisplay == 'menu'">
+    <app-information [information]="'addresse a faire'" [restaurant]="restaurant"></app-information>
+  </ng-container>
+
+  <ng-container *ngIf="informationToDisplay == 'description'">
+    <app-information [information]="'addresse a faire'" [restaurant]="restaurant"></app-information>
+  </ng-container>
+
+  <ng-container *ngIf="informationToDisplay == 'categories'">
+    <app-information [information]="'addresse a faire'" [restaurant]="restaurant"></app-information>
+  </ng-container>
+
+</ng-container>

@@ -1,6 +1,7 @@
 package be.prest.ServiceAPI.Commentary;
 
 import be.prest.ServiceAPI.Common.ApiResponse;
+import be.prest.ServiceAPI.Restaurant.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +13,9 @@ public class CommentaryController {
     @Autowired
     CommentaryRepository commentaryRepository;
 
+    @Autowired
+    RestaurantRepository restaurantRepository;
+
     @GetMapping("/list")
     public ApiResponse list(){
         return new ApiResponse(true, commentaryRepository.findAll(),BASE_CODE + "list.sucess");
@@ -20,6 +24,12 @@ public class CommentaryController {
     @GetMapping("/detail/{id}")
     public ApiResponse detail(@PathVariable int id) {
         return new ApiResponse(true, commentaryRepository.findById(id), BASE_CODE + "detail.success");
+    }
+
+    @GetMapping("/detail/{restaurant_id}")
+    public ApiResponse detailForRestaurant(@PathVariable int restaurant_id) {
+
+        return new ApiResponse(true, commentaryRepository.findAllByRestaurant(restaurantRepository.findById(restaurant_id)), BASE_CODE + "detail.success");
     }
 
     @PostMapping("/create")
@@ -31,6 +41,7 @@ public class CommentaryController {
                 Commentary commentary = new Commentary.Builder()
                         .setNote(payload.getNote())
                         .setText(payload.getText())
+                        .setDate(payload.getDate())
                         .setRestaurant((payload.getRestaurant()))
                         .setUser(payload.getUser())
                         .build();
