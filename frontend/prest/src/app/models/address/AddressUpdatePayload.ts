@@ -3,10 +3,10 @@ import {Payload} from "../common/Payload";
 export interface AddressUpdatePayload extends Payload
 {
   id_address: number;
-  country: String;
-  town: String;
-  zip: String;
-  road: String;
+  country: string;
+  town: string;
+  zip: string;
+  road: string;
   roadNumber: number;
-  roadBox: String;
+  roadBox: string;
 }

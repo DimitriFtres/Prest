@@ -15,10 +15,19 @@
           <a class="navbar-brand mb-0 h1" href="">Restaurants</a>
         </li>
       </ul>
-      <div class="nav-item">
-        <a class="navbar-brand mb-0 h1 link-info" href="/signin/user">Connexion</a>
-        <a class="navbar-brand mb-0 h1 link-info" href="/signup/user">Inscription</a>
-      </div>
+      <ng-container *ngIf="isConnected">
+        <ng-container *ngIf="isConnected == true; else deconnexion">
+          <div class="nav-item">
+            <a class="navbar-brand mb-0 h1 link-info" href="/signin/user">Connexion</a>
+            <a class="navbar-brand mb-0 h1 link-info" href="/signup/user">Inscription</a>
+          </div>
+        </ng-container>
+        <ng-template #deconnexion>
+          <div class="nav-item">
+            <a class="navbar-brand mb-0 h1 link-info" href="/signin/user" (click)="logout()">Déconnexion</a>
+          </div>
+        </ng-template>
+      </ng-container>
     </div>
   </nav>
 </header>

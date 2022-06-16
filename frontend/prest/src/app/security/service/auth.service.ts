@@ -33,6 +33,7 @@ export class AuthService extends ApiService {
           this.isAuthenticated$.next(true);
           this.navigation.navigateToSecure();
         }
+        sessionStorage.setItem('user', (response.data as SigninResponse).user.email);
         return response.data as SigninResponse;
       })
     )
@@ -63,6 +64,7 @@ export class AuthService extends ApiService {
   logout(): void {
     this.tokenService.signOut();
     this.isAuthenticated$.next(false);
+    sessionStorage.removeItem('user');
     this.navigation.navigateToUnsecure();
   }
 }

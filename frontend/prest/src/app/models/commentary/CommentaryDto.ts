@@ -6,7 +6,7 @@ export interface CommentaryDto extends Dto
 {
   id_commentary: number;
   note: number;
-  text: String;
+  text: string;
   restaurant: Restaurant;
   user: User;
   date: Date;

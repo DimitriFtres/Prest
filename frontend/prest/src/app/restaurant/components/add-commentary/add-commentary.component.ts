@@ -33,15 +33,17 @@ export class AddCommentaryComponent implements OnInit {
       if(sessionStorage.getItem('user') != null)
       {
         restaurant.userRestaurants.forEach(userRestaurant => {
-          this.userService.getDetail(sessionStorage.getItem('user')!).subscribe(user => {
+          this.userService.getDetailByEmail(sessionStorage.getItem('user')!).subscribe(user => {
             if(userRestaurant.id_user == user)
             {
               this.isDisplayed = false;
             }
           });
-        })
+        });
       }
-    })
+    });
+    console.log(this.isDisplayed);
+    console.log(this.authService.isAuthenticated$.value);
   }
 
   submit(): void {

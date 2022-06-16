@@ -5,7 +5,7 @@ import {User} from "@user/User";
 export interface UserRestaurantDto extends Dto
 {
   id: number;
-  role: String;
+  role: string;
   id_user: User;
   id_restaurant: Restaurant;
 }

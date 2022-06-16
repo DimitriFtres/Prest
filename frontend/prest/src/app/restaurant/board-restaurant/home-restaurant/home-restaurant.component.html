@@ -19,20 +19,7 @@
     <app-add-commentary></app-add-commentary>
   </ng-container>
 
-  <ng-container *ngIf="informationToDisplay == 'address'">
-    <app-information [information]="'addresse a faire 1'" [restaurant]="restaurant"></app-information>
+  <ng-container *ngIf="informationToDisplay != null">
+    <app-information [information]="informationToDisplay" [restaurant]="restaurant"></app-information>
   </ng-container>
-
-  <ng-container *ngIf="informationToDisplay == 'menu'">
-    <app-information [information]="'addresse a faire 2'" [restaurant]="restaurant"></app-information>
-  </ng-container>
-
-  <ng-container *ngIf="informationToDisplay == 'description'">
-    <app-information [information]="'addresse a faire 3'" [restaurant]="restaurant"></app-information>
-  </ng-container>
-
-  <ng-container *ngIf="informationToDisplay == 'categories'">
-    <app-information [information]="'addresse a faire 4'" [restaurant]="restaurant"></app-information>
-  </ng-container>
-
 </ng-container>

@@ -6,7 +6,7 @@ import {Address} from "@address/Address";
 export interface UserUpdatePayload extends Payload
 {
   id_user: number;
-  nickname: String;
+  nickname: string;
   commentaries: Commentary[];
   userRestaurants: UserRestaurant[];
   addresses: Address[];

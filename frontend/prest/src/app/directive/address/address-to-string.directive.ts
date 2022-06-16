@@ -2,9 +2,9 @@ import {Directive, ElementRef, Input} from '@angular/core';
 import {Address} from "@address/Address";
 
 @Directive({
-  selector: '[appAddressToString]'
+  selector: '[appAddresstoString]'
 })
-export class AddressToStringDirective {
+export class AddresstoStringDirective {
   @Input('address') address!: Address;
   constructor(private _elementRef: ElementRef) { }
 

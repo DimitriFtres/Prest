@@ -5,7 +5,7 @@ import {User} from "@user/User";
 export interface UserRestaurantUpdatePayload extends Payload
 {
   id: number;
-  role: String;
+  role: string;
   id_user: User;
   id_restaurant: Restaurant;
 }

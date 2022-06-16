@@ -23,7 +23,7 @@ import { NewsComponent } from './restaurant/components/news/news.component';
 import { CommentaryComponent } from './restaurant/components/commentary/commentary.component';
 import { AddCommentaryComponent } from './restaurant/components/add-commentary/add-commentary.component';
 import { InformationComponent } from './restaurant/components/information/information.component';
-import {AddressToStringDirective} from "@directive/address";
+import {AddresstoStringDirective} from "@directive/address";
 import {BoardRestaurantModule} from "./restaurant/board-restaurant/board-restaurant.module";
 import {StarRatingModule} from "angular-star-rating";
 import {PublicGuard, SecurityGuard} from "./security/guard";
@@ -43,7 +43,7 @@ import { DatetimeDirective } from '@directive/date';
     CommentaryComponent,
     AddCommentaryComponent,
     InformationComponent,
-    AddressToStringDirective,
+    AddresstoStringDirective,
     DatetimeDirective,
   ],
   imports: [

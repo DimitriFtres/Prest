@@ -4,8 +4,8 @@ import {Restaurant} from "@restaurant/Restaurant";
 export interface CategoryDto extends Dto
 {
   id_category: number;
-  label: String;
-  img: String;
+  label: string;
+  img: string;
   restaurants: Restaurant[];
 }
 

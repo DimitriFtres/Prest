@@ -8,10 +8,10 @@ import {Component, Input, OnInit} from '@angular/core';
 export class ImagePresentationComponent implements OnInit {
 
   @Input("url")
-  imageUrl?: String;
+  imageUrl?: string;
   @Input("pathTo")
-  pathTo?: String;
-  
+  pathTo?: string;
+
   constructor() { }
 
   ngOnInit(): void {

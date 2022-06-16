@@ -45,6 +45,15 @@ export class UserService extends ApiService{
       );
   }
 
+  getDetailByEmail(email: string): Observable<User> {
+    return this.http.get(this.baseUrl+`user/detail/email/${email}`)
+      .pipe(
+        map((response) => {
+          return response.data as User
+        })
+      );
+  }
+
   deleteUser(user_id: string): Observable<User> {
     return this.http.delete(this.baseUrl+`user/delete/${user_id}`)
       .pipe(

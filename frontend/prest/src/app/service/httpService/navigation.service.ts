@@ -13,7 +13,7 @@ export class NavigationService {
   }
 
   navigateToUnsecure(): void {
-    this.navigate('/account');
+    this.navigate('/signin/user');
   }
 
   navigateToSecure(): void {

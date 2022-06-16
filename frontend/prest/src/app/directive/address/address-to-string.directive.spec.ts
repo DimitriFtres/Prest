@@ -1,9 +1,9 @@
-import { AddressToStringDirective } from './address-to-string.directive';
+import { AddresstoStringDirective } from './address-to-string.directive';
 
-describe('AddressToStringDirective', () => {
+describe('AddresstoStringDirective', () => {
   it('should create an instance', () => {
     // @ts-ignore
-    const directive = new AddressToStringDirective();
+    const directive = new AddresstoStringDirective();
     expect(directive).toBeTruthy();
   });
 });

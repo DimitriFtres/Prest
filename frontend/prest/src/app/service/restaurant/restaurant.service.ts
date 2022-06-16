@@ -45,7 +45,7 @@ export class RestaurantService extends ApiService{
       );
   }
   //
-  // searchRestaurants(label: String, city: String, category: Category)
+  // searchRestaurants(label: string, city: string, category: Category)
   // {
   //   let restaurant = {
   //     label: label,

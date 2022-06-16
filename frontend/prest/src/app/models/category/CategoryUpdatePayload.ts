@@ -4,7 +4,7 @@ import {Restaurant} from "@restaurant/Restaurant";
 export interface CategoryUpdatePayload extends Payload
 {
   id_category: number;
-  label: String;
-  img: String;
+  label: string;
+  img: string;
   restaurants: Restaurant[];
 }

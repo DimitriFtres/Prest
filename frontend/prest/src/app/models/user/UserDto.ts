@@ -6,7 +6,7 @@ import {Address} from "@address/Address";
 export interface UserDto extends Dto
 {
   id_user: number;
-  nickname: String;
+  nickname: string;
   commentaries: Commentary[];
   userRestaurants: UserRestaurant[];
   addresses: Address[];

@@ -22,6 +22,11 @@ public class UserController {
         return new ApiResponse(true, userRepository.findById(id), BASE_CODE + "detail.success");
     }
 
+    @GetMapping("/detail/email/{email}")
+    public ApiResponse detailFromEMail(@PathVariable String email) {
+        return new ApiResponse(true, userRepository.findByCredential_Email(email), BASE_CODE + "detail.success");
+    }
+
     @PostMapping("/create")
     public ApiResponse create(@RequestBody UserCreatePayload payload) {
             try {

@@ -9,7 +9,8 @@ const routes: Routes = [
   {
     path: "",
     component: HomeComponent,
-    pathMatch: "full"
+    pathMatch: "full",
+    canActivate: [PublicGuard]
   },
   {
     path: "signin",

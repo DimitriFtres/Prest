@@ -1,9 +1,9 @@
 export class ApiResponse{
   result!: boolean;
   data!: Object;
-  code!: String;
+  code!: string;
 
-  constructor(result: boolean, data: Object, code: String) {
+  constructor(result: boolean, data: Object, code: string) {
     this.result = result;
     this.data = data;
     this.code = code;

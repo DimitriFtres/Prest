@@ -5,12 +5,12 @@ import {Address} from "@address/Address";
 
 export interface RestaurantAddPayload extends Payload
 {
-  label: String;
-  description: String;
-  menu: String;
+  label: string;
+  description: string;
+  menu: string;
   categories: Category[];
   actif: boolean;
   userRestaurants: UserRestaurant[];
   address: Address;
-  image: String;
+  image: string;
 }

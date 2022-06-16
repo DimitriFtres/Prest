@@ -13,7 +13,7 @@ export class HomeRestaurantComponent implements OnInit {
 
   restaurant?: Restaurant;
   informations = RestaurantInformationEnum;
-  informationToDisplay?: String;
+  informationToDisplay?: RestaurantInformationEnum;
 
   constructor(public activatedRoute: ActivatedRoute,
               public restaurantService: RestaurantService) { }
@@ -30,23 +30,23 @@ export class HomeRestaurantComponent implements OnInit {
 
   }
 
-  informationSelected(information?: String){
+  informationSelected(information?: string){
 
     if(information === RestaurantInformationEnum.ADDRESS)
     {
-      this.informationToDisplay = "address";
+      this.informationToDisplay = RestaurantInformationEnum.ADDRESS;
     }
     if(information === RestaurantInformationEnum.MENU)
     {
-      this.informationToDisplay = "menu";
+      this.informationToDisplay = RestaurantInformationEnum.MENU;
     }
     if(information === RestaurantInformationEnum.DESCRIPTION)
     {
-      this.informationToDisplay = "description";
+      this.informationToDisplay = RestaurantInformationEnum.DESCRIPTION;
     }
     if(information === RestaurantInformationEnum.CATEGORIES)
     {
-      this.informationToDisplay = "categories";
+      this.informationToDisplay = RestaurantInformationEnum.CATEGORIES;
     }
     if(information === undefined)
     {
