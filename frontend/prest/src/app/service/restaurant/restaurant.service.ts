@@ -44,25 +44,25 @@ export class RestaurantService extends ApiService{
         })
       );
   }
-
-  searchRestaurants(label: String, city: String, category: Category)
-  {
-    let restaurant = {
-      label: label,
-      city: city,
-      category: category
-    }
-    return this.http.getWithData(this.baseUrl+`restaurant/search`, restaurant)
-      .pipe(
-        map((response) => {
-          if(response.result){
-            return response.data as Restaurant[]
-          }else{
-            return [];
-          }
-        })
-      );
-  }
+  //
+  // searchRestaurants(label: String, city: String, category: Category)
+  // {
+  //   let restaurant = {
+  //     label: label,
+  //     city: city,
+  //     category: category
+  //   }
+  //   return this.http.getWithData(this.baseUrl+`restaurant/search`, restaurant)
+  //     .pipe(
+  //       map((response) => {
+  //         if(response.result){
+  //           return response.data as Restaurant[]
+  //         }else{
+  //           return [];
+  //         }
+  //       })
+  //     );
+  // }
 
   deleteRestaurant(restaurant_id: string): Observable<Restaurant> {
     return this.http.delete(this.baseUrl+`restaurant/delete/${restaurant_id}`)

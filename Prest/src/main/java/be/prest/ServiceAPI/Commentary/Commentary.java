@@ -20,14 +20,14 @@ public class Commentary {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_commentary;
     @NotNull
-    private String note;
+    private double note;
     private String text;
-    private Date date;
+    private Timestamp date;
     @ManyToOne
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     public Commentary(CommentaryUpdatePayload commentary)
@@ -44,9 +44,9 @@ public class Commentary {
     public static class Builder
     {
         private int id_commentary;
-        private String note;
+        private double note;
         private String text;
-        private Date date;
+        private Timestamp date;
         private Restaurant restaurant;
         private User user;
 
@@ -55,7 +55,7 @@ public class Commentary {
             return this;
         }
 
-        public Builder setNote(String note) {
+        public Builder setNote(double note) {
             this.note = note;
             return this;
         }
@@ -65,7 +65,7 @@ public class Commentary {
             return this;
         }
 
-        public Builder setDate(Date date) {
+        public Builder setDate(Timestamp date) {
             this.date = date;
             return this;
         }

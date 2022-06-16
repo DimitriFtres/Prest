@@ -6,12 +6,12 @@ import {RestaurantComponent} from "@signin/restaurant/restaurant.component";
 const routes:Routes = [
   {
     path: "",
-    redirectTo : 'user',
+    component: UserComponent,
     pathMatch: "full"
   },
   {
     path: "user",
-    component: UserComponent,
+    redirectTo : "",
     pathMatch: "full"
   },
   {

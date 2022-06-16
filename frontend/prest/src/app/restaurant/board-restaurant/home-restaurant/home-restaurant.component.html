@@ -1,0 +1,38 @@
+<app-header></app-header>
+
+<ng-container *ngIf="restaurant">
+  <app-image-presentation [url]="restaurant.image"></app-image-presentation>
+  <div class="d-flex flex-nowrap my-2 justify-content-center">
+    <div (click)="informationSelected(undefined)" class="d-flex align-items-center">
+      <p class="h4 px-3 mx-2 btn btn-outline-primary my-0">Acceuil</p>
+    </div>
+    <ng-container *ngFor="let information of informations | keyvalue">
+      <div (click)="informationSelected(information.value)" class="d-flex align-items-center">
+        <p class="h4 px-3 mx-2 btn btn-outline-primary my-0">{{information.value}}</p>
+      </div>
+    </ng-container>
+  </div>
+<hr class="bg-primary my-0"/>
+  <ng-container *ngIf="informationToDisplay == undefined">
+    <app-news></app-news>
+    <app-commentary></app-commentary>
+    <app-add-commentary></app-add-commentary>
+  </ng-container>
+
+  <ng-container *ngIf="informationToDisplay == 'address'">
+    <app-information [information]="'addresse a faire 1'" [restaurant]="restaurant"></app-information>
+  </ng-container>
+
+  <ng-container *ngIf="informationToDisplay == 'menu'">
+    <app-information [information]="'addresse a faire 2'" [restaurant]="restaurant"></app-information>
+  </ng-container>
+
+  <ng-container *ngIf="informationToDisplay == 'description'">
+    <app-information [information]="'addresse a faire 3'" [restaurant]="restaurant"></app-information>
+  </ng-container>
+
+  <ng-container *ngIf="informationToDisplay == 'categories'">
+    <app-information [information]="'addresse a faire 4'" [restaurant]="restaurant"></app-information>
+  </ng-container>
+
+</ng-container>

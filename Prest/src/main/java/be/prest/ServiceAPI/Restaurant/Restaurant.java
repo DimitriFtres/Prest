@@ -42,8 +42,8 @@ public class Restaurant {
     @OneToMany( targetEntity= UserRestaurant.class, mappedBy="id_restaurant" )
     private List<UserRestaurant> userRestaurants;
 
-    @OneToOne
-    @JoinTable(name="address_id")
+    @OneToOne()
+    @JoinColumn(name = "id_address", nullable = false)
     private Address address;
 
     public Restaurant(RestaurantUpdatePayload restaurant)

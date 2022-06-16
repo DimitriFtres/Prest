@@ -31,7 +31,7 @@ public class TokenServiceImpl implements TokenService{
     @Override
     public TokenResponse getToken(String email, String password) {
         MultiValueMap<String, String> map = new LinkedMultiValueMap<String, String>();
-        map.add("email", email);
+        map.add("username", email);
         map.add("password", password);
         map.add("grant_type", "password");
         return this.call(map);

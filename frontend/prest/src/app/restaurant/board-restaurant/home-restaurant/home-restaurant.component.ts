@@ -19,7 +19,7 @@ export class HomeRestaurantComponent implements OnInit {
               public restaurantService: RestaurantService) { }
 
   ngOnInit(): void {
-    let restaurant_id = this.activatedRoute.snapshot.params.get('restaurant');
+    let restaurant_id = this.activatedRoute.snapshot.params['id'];
 
     if(restaurant_id != null)
     {
@@ -30,7 +30,7 @@ export class HomeRestaurantComponent implements OnInit {
 
   }
 
-  informationSelected(information: String){
+  informationSelected(information?: String){
 
     if(information === RestaurantInformationEnum.ADDRESS)
     {
@@ -47,6 +47,10 @@ export class HomeRestaurantComponent implements OnInit {
     if(information === RestaurantInformationEnum.CATEGORIES)
     {
       this.informationToDisplay = "categories";
+    }
+    if(information === undefined)
+    {
+      this.informationToDisplay = undefined;
     }
   }
 

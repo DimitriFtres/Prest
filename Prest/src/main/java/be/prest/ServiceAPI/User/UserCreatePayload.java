@@ -16,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 public class UserCreatePayload {
     private String nickname;
-    private List<Commentary> commentaries;
+//    private List<Commentary> commentaries;
     private List<UserRestaurant> userRestaurants;
     private List<Address> addresses;
     private Credential credential;

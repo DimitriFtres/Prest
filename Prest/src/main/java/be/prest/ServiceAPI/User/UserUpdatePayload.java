@@ -17,7 +17,7 @@ import java.util.List;
 public class UserUpdatePayload {
     private int id_user;
     private String nickname;
-    private List<Commentary> commentaries;
+//    private List<Commentary> commentaries;
     private List<UserRestaurant> userRestaurants;
     private List<Address> addresses;
     private Credential credential;

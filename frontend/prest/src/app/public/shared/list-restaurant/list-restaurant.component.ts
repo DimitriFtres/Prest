@@ -11,8 +11,9 @@ import {Category} from "@category/Category";
 })
 export class ListRestaurantComponent implements OnInit {
   restaurants?: Restaurant[];
-  label: String = "";
-  city: String = "";
+  restaurantFiltered?: Restaurant[];
+  label: string = "";
+  city: string = "";
   category: Category = {} as Category;
 
   constructor(public restaurantService: RestaurantService) { }
@@ -24,20 +25,51 @@ export class ListRestaurantComponent implements OnInit {
   }
   labelChange(event: any) {
     this.label = event.target.value;
-    this.restaurantService.searchRestaurants(this.label, this.city, this.category).subscribe(restaurants => {
-      this.restaurants = restaurants;
-    });
+
+    if(this.restaurants)
+    {
+      this.restaurants.filter((restaurant) => {
+         return this.addRestaurantFiltered(restaurant, this.label, this.category, this.city);
+      });
+    }
+
   }
   categoryChange(category: Category) {
     this.category = category;
-    this.restaurantService.searchRestaurants(this.label, this.city, this.category).subscribe(restaurants => {
-      this.restaurants = restaurants;
-    });
+
+    if(this.restaurants)
+    {
+      this.restaurants.filter((restaurant) => {
+        return this.addRestaurantFiltered(restaurant, this.label, this.category, this.city);
+      });
+    }
   }
   cityChange(event: any) {
     this.city = event.target.value;
-    this.restaurantService.searchRestaurants(this.label, this.city, this.category).subscribe(restaurants => {
-      this.restaurants = restaurants;
-    });
+
+    if(this.restaurants)
+    {
+      this.restaurants.filter((restaurant) => {
+        return this.addRestaurantFiltered(restaurant, this.label, this.category, this.city);
+      });
+    }
+  }
+
+  addRestaurantFiltered(restaurant: Restaurant, label: string, category: Category, city: string) : boolean{
+    if(restaurant.label.includes(label) && restaurant.address.town.includes(city))
+    {
+      if(category == null)
+      {
+        return true;
+      }
+      else
+      {
+        if(restaurant.categories.includes(category)){
+          return true;
+        }
+        return false;
+      }
+    }
+    return false;
   }
 }

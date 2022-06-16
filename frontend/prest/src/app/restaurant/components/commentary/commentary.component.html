@@ -1,0 +1,23 @@
+<ng-container *ngIf="commentaries">
+  <ng-container *ngFor="let commentary of commentaries">
+    <div class="container my-2">
+      <div class="row d-flex justify-content-center">
+        <div class="col-md-12 col-lg-10 col-xl-8">
+          <div class="card">
+            <div class="card-body">
+              <div class="d-flex flex-start align-items-center justify-content-between">
+                <div>
+                  <p class="fw-bold text-primary mb-1 h6">{{commentary.user.nickname}}</p>
+                  <p class="fw-bold text-primary mb-1 h6"></p>
+                </div>
+                <star-rating [starType]="'svg'" [rating]="commentary.note" [readOnly]="true"></star-rating>
+              </div>
+              <hr/>
+              <p class="mt-3 mb-4 pb-2">{{commentary.text}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</ng-container>

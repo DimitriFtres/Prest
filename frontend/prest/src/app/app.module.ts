@@ -13,18 +13,21 @@ import { ListRestaurantComponent } from './public/shared/list-restaurant/list-re
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { FooterComponent } from './public/shared/footer/footer.component';
 import { NotFoundComponent } from './public/public/not-found/not-found/not-found.component';
-import {RouterOutlet} from "@angular/router";
 import {SigninModule} from "@signin/signin.module";
 import {SignupModule} from "@signup/signup.module";
 import {HeaderModule} from "./public/shared/header/header.module";
 import {SigninRoutingModule} from "@signin/signin.routing.module";
 import {SignupRoutingModule} from "@signup/signup.routing.module";
-import { HomeRestaurantComponent } from './restaurant/home-restaurant/home-restaurant.component';
-import { NewsComponent } from './restaurant/news/news.component';
-import { CommentaryComponent } from './restaurant/commentary/commentary.component';
-import { AddCommentaryComponent } from './restaurant/add-commentary/add-commentary.component';
-import { InformationComponent } from './restaurant/information/information.component';
+import { HomeRestaurantComponent } from './restaurant/board-restaurant/home-restaurant/home-restaurant.component';
+import { NewsComponent } from './restaurant/components/news/news.component';
+import { CommentaryComponent } from './restaurant/components/commentary/commentary.component';
+import { AddCommentaryComponent } from './restaurant/components/add-commentary/add-commentary.component';
+import { InformationComponent } from './restaurant/components/information/information.component';
 import {AddressToStringDirective} from "@directive/address";
+import {BoardRestaurantModule} from "./restaurant/board-restaurant/board-restaurant.module";
+import {StarRatingModule} from "angular-star-rating";
+import {PublicGuard, SecurityGuard} from "./security/guard";
+import { DatetimeDirective } from '@directive/date';
 
 @NgModule({
   declarations: [
@@ -41,6 +44,7 @@ import {AddressToStringDirective} from "@directive/address";
     AddCommentaryComponent,
     InformationComponent,
     AddressToStringDirective,
+    DatetimeDirective,
   ],
   imports: [
     BrowserModule,
@@ -51,11 +55,14 @@ import {AddressToStringDirective} from "@directive/address";
     SigninModule,
     SignupModule,
     HeaderModule,
-    SigninRoutingModule,
-    SignupRoutingModule,
-    FormsModule
+    FormsModule,
+    BoardRestaurantModule,
+    StarRatingModule.forRoot(),
   ],
-  providers: [],
+  providers: [
+    SecurityGuard,
+    PublicGuard
+  ],
   exports: [],
   bootstrap: [AppComponent]
 })

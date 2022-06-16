@@ -5,7 +5,7 @@ import {Address} from "@address/Address";
   selector: '[appAddressToString]'
 })
 export class AddressToStringDirective {
-  @Input() address!: Address;
+  @Input('address') address!: Address;
   constructor(private _elementRef: ElementRef) { }
 
   ngOnInit(){

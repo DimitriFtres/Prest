@@ -1,26 +1,24 @@
 import {RouterModule, Routes} from "@angular/router";
 import {NgModule} from "@angular/core";
+import {HomeRestaurantComponent} from "./home-restaurant/home-restaurant.component";
 import {CommonModule} from "@angular/common";
-import {HomeComponent} from ".//home/home.component";
 
-let routes:Routes = [
+const routes: Routes = [
   {
-    path: "",
-    component: HomeComponent,
+    path: "home/:id",
+    component: HomeRestaurantComponent,
     pathMatch: "full"
   }
-];
-
+]
 @NgModule({
-  declarations: []
+  declarations: [
+  ]
   ,
   imports: [
-    CommonModule,
     RouterModule.forChild(routes)
   ],
   exports: [
     RouterModule
   ]
 })
-
-export class HomeRoutingModule {}
+export class BoardRestaurantRoutingModule { }

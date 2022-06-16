@@ -13,9 +13,9 @@ import java.sql.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CommentaryCreatePayload {
-    private String note;
+    private double note;
     private String text;
-    private Date date;
+    private Timestamp date;
     private Restaurant restaurant;
     private User user;
 

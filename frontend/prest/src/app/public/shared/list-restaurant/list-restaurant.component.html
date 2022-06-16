@@ -1,6 +1,6 @@
 <app-category (category)="categoryChange($event)"></app-category>
 <section id="list-restaurant" class="w-90 mx-auto">
-  <form class="d-flex">
+  <form class="d-flex mb-5">
     <div class="input-group input-group-lg">
       <span class="input-group-text bg-primary" id="input-restaurant-name">Nom du restaurant</span>
       <input type="text" class="form-control" (input)="labelChange($event)" placeholder="trad a faire : nom" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
@@ -11,14 +11,15 @@
     </div>
   </form>
   <ng-container *ngIf="restaurants">
-    <ng-container *ngFor="let restaurant in restaurants">
-      <div class="card text-center" style="width: 18rem;">
+    <ng-container *ngFor="let restaurant of restaurants">
+      <div class="card text-center" style="width: 20rem;">
+        <a href="restaurant/home/{{restaurant.id_restaurant}}" class="text-decoration-none">
         <img src="{{restaurant.image}}" class="card-img-top" alt="{{restaurant.label}}">
-        <div class="card-body">
-          <h5 class="card-title">{{restaurant.label}}</h5>
-          <p class="card-text">{{restaurant.description}}</p>
-          <a href="/restaurant/{{restaurant.id}}" class="btn btn-primary">Voir plus d'information</a>
-        </div>
+          <div class="card-body text-decoration-none">
+            <h5 class="card-title text-decoration-none">{{restaurant.label}}</h5>
+            <p class="card-text text-decoration-none">{{restaurant.description}}</p>
+          </div>
+        </a>
       </div>
     </ng-container>
   </ng-container>

@@ -5,6 +5,7 @@ import {CommentaryService} from "@service/commentary/commentary.service";
 import {switchMap} from "rxjs/operators";
 import {of} from "rxjs";
 
+
 @Component({
   selector: 'app-commentary',
   templateUrl: './commentary.component.html',
@@ -17,11 +18,11 @@ export class CommentaryComponent implements OnInit {
               public commentaryService: CommentaryService) { }
 
   ngOnInit(): void {
-    let restaurant_id = this.activatedRoute.snapshot.params.get('restaurant');
+    let restaurant_id = this.activatedRoute.snapshot.params['id'];
     this.activatedRoute.params.pipe(
       switchMap((param: Params) => {
-        if(param['restaurant'])
-          return this.commentaryService.getListFromRestaurant(param['restaurant']);
+        if(param['id'])
+          return this.commentaryService.getListFromRestaurant(param['id']);
         else
           return of({} as Commentary[]);
       })

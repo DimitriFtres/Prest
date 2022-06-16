@@ -4,7 +4,7 @@ import {User} from "@user/User";
 
 export interface Commentary {
   id_commentary: number;
-  note: String;
+  note: number;
   text: String;
   restaurant: Restaurant;
   user: User;

@@ -1,9 +1,9 @@
-<div class="d-flex flex-nowrap my-5" *ngIf="categories">
+<div class="d-flex flex-nowrap align-items-center align-content-center justify-content-center" *ngIf="categories">
   <ng-container *ngFor="let category of categories">
-    <div (select)="selected(category)">
-      <img src="{{category.img}}">
-      <span>{{category.label}}</span>
+    <div class="d-flex flex-column align-items-center justify-content-center" (click)="selected(category)" style="width: 150px">
+      <img src="{{category.img}}" [width]="'75'" [height]="'75'">
+      <span class="h5">{{category.label}}</span>
     </div>
   </ng-container>
 </div>
-<hr/>
+<hr class="my-0"/>

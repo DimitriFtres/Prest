@@ -5,7 +5,7 @@ import {User} from "@user/User";
 export interface CommentaryDto extends Dto
 {
   id_commentary: number;
-  note: String;
+  note: number;
   text: String;
   restaurant: Restaurant;
   user: User;

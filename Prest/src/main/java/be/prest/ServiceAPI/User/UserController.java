@@ -31,7 +31,7 @@ public class UserController {
                 User user = new User.Builder()
                         .setNickname(payload.getNickname())
                         .setAddresses(payload.getAddresses())
-                        .setCommentaries(payload.getCommentaries())
+//                        .setCommentaries(payload.getCommentaries())
                         .setUserRestaurants(payload.getUserRestaurants())
                         .setCredential(payload.getCredential()).build();
                 User newUser = userRepository.save(user);

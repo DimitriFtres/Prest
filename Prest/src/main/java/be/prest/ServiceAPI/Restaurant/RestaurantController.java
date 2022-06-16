@@ -18,7 +18,8 @@ public class RestaurantController {
 
     @GetMapping("/list")
     public ApiResponse list(){
-        return new ApiResponse(true, restaurantRepository.findAll(Pageable.ofSize(35)),BASE_CODE + "list.sucess");
+        return new ApiResponse(true, restaurantRepository.findAll(),BASE_CODE + "list.sucess");
+
     }
 
     @GetMapping("/detail/{id}")
@@ -26,12 +27,12 @@ public class RestaurantController {
         return new ApiResponse(true, restaurantRepository.findById(id), BASE_CODE + "detail.success");
     }
 
-    @GetMapping("/search/restaurant")
-    public ApiResponse searchByLabel(@RequestBody String label, @RequestBody String city, @RequestBody Category category) {
-        return new ApiResponse(true,
-                restaurantRepository.findAllByAddressContainingAndLabelContainingAndCategories(city, label, category),
-                BASE_CODE + "detail.success");
-    }
+//    @GetMapping("/search/restaurant")
+//    public ApiResponse searchByLabel(@RequestBody String label, @RequestBody String city, @RequestBody Category category) {
+//        return new ApiResponse(true,
+//                restaurantRepository.findAllByAddressContainingAndLabelContainingAndCategories(city, label, category),
+//                BASE_CODE + "detail.success");
+//    }
 
     @PostMapping("/create")
     public ApiResponse create(@RequestBody RestaurantCreatePayload payload) {

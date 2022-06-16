@@ -26,14 +26,14 @@ public class User {
     @NotNull
     private String nickname;
 
-    @OneToMany(mappedBy = "user")
-    private List<Commentary> commentaries;
+//    @OneToMany(mappedBy = "user")
+//    private List<Commentary> commentaries;
 
     @OneToMany( targetEntity= UserRestaurant.class, mappedBy="id_user" )
     private List<UserRestaurant> userRestaurants;
 
     @OneToMany (targetEntity = Address.class)
-    @JoinTable(name = "address_id")
+    @JoinTable(inverseJoinColumns = @JoinColumn(name = "id_address"))
     private List<Address> addresses;
 
     @JsonIgnore
@@ -45,7 +45,7 @@ public class User {
     {
         this.id_user = user.getId_user();
         this.nickname = user.getNickname();
-        this.commentaries = user.getCommentaries();
+//        this.commentaries = user.getCommentaries();
         this.userRestaurants = user.getUserRestaurants();
         this.addresses = user.getAddresses();
         this.credential = user.getCredential();
@@ -56,7 +56,7 @@ public class User {
         private int id_user;
         private String nickname;
         private List<Address> addresses;
-        private List<Commentary> commentaries;
+//        private List<Commentary> commentaries;
         private List<UserRestaurant> userRestaurants;
         private Credential credential;
 
@@ -80,10 +80,10 @@ public class User {
             return this;
         }
 
-        public Builder setCommentaries(List<Commentary> commentaries) {
-            this.commentaries = commentaries;
-            return this;
-        }
+//        public Builder setCommentaries(List<Commentary> commentaries) {
+//            this.commentaries = commentaries;
+//            return this;
+//        }
 
         public Builder setUserRestaurants(List<UserRestaurant> userRestaurants) {
             this.userRestaurants = userRestaurants;
@@ -92,7 +92,7 @@ public class User {
 
         public User build()
         {
-            return new User(id_user, nickname, commentaries, userRestaurants, addresses, credential);
+            return new User(id_user, nickname/*, commentaries*/, userRestaurants, addresses, credential);
         }
     }
 

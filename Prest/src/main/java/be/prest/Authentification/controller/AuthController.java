@@ -29,25 +29,35 @@ public class AuthController {
 
     @GetMapping("/me")
     public ApiResponse get(final Principal principal) {
-        return new ApiResponse(true, credentialRepository.findByEmail(principal.getName()), null);
+        try{
+            return new ApiResponse(true, credentialRepository.findByEmail(principal.getName()), null);
+        }
+        catch(Exception e){
+            return new ApiResponse(false, null, e.getMessage());
+        }
     }
 
     @PostMapping("/signin")
     public ApiResponse signin(@RequestBody SignupRequest request) {
-        ApiResponse result = request.isValid();
-        if (result.isResult()) {
-            Credential credential = credentialRepository.findByEmail(request.getEmail());
-            if (credential != null && encoder.matches(request.getPassword(), credential.getPassword())) {
-                HashMap<String, Object> hmap = new HashMap<String, Object>();
-                hmap.put("user", credential);
-                hmap.put("token", this.tokenService.getToken(request.getEmail(), request.getPassword()));
-                return new ApiResponse(true, hmap, null);
+        try{
+            ApiResponse result = request.isValid();
+            if (result.isResult()) {
+                Credential credential = credentialRepository.findByEmail(request.getEmail());
+                if (credential != null && encoder.matches(request.getPassword(), credential.getPassword())) {
+                    HashMap<String, Object> hmap = new HashMap<String, Object>();
+                    hmap.put("user", credential);
+                    hmap.put("token", this.tokenService.getToken(request.getEmail(), request.getPassword()));
+                    return new ApiResponse(true, hmap, null);
+                } else {
+                    return new ApiResponse(false, null, "api.signin.bad-credentials");
+                }
             } else {
-                return new ApiResponse(false, null, "api.signin.bad-credentials");
-            }
-        } else {
-            return result;
+                return result;
+            }        }
+        catch(Exception e){
+            return new ApiResponse(false, null, e.getMessage());
         }
+
     }
 
     @PostMapping("/refresh")
@@ -61,7 +71,12 @@ public class AuthController {
 
     @PostMapping("/signup")
     public ApiResponse signup(@RequestBody SignupRequest request) {
-        return credentialService.signup(request);
+        try{
+            return credentialService.signup(request);
+        }
+        catch(Exception e){
+            return new ApiResponse(false, null, e.getMessage());
+        }
     }
 
 }

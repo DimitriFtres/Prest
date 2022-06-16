@@ -4,7 +4,7 @@ import {CommentaryAddPayload} from "@commentary/CommentaryAddPayload";
 import {ActivatedRoute} from "@angular/router";
 import {CommentaryService} from "@service/commentary/commentary.service";
 import {RestaurantService} from "@service/restaurant/restaurant.service";
-import {AuthService} from "../../security/service/auth.service";
+import {AuthService} from "../../../security/service/auth.service";
 import {UserService} from "@service/user/user.service";
 
 @Component({
@@ -28,7 +28,7 @@ export class AddCommentaryComponent implements OnInit {
 
   ngOnInit(): void {
     //verif si user a un lien avec le restaurant si oui alors on desactive l'ajout de commentaire
-    this.restaurantService.getDetail(this.activatedRoute.snapshot.params.get('restaurant')).subscribe(restaurant => {
+    this.restaurantService.getDetail(this.activatedRoute.snapshot.params['id']).subscribe(restaurant => {
 
       if(sessionStorage.getItem('user') != null)
       {
@@ -45,10 +45,10 @@ export class AddCommentaryComponent implements OnInit {
   }
 
   submit(): void {
-    this.restaurantService.getDetail(this.activatedRoute.snapshot.params.get('restaurant')).subscribe(restaurant => {
+    this.restaurantService.getDetail(this.activatedRoute.snapshot.params.get['id']).subscribe(restaurant => {
       this.userService.getDetail(sessionStorage.getItem('user')!).subscribe(user => {
         this.commentary = {
-          note: "",
+          note: 0,
           text: this.formCommentary.value.text,
           restaurant: restaurant,
           user: user,

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {HomeRoutingModule} from "./home.routing.module";
+import {BoardRestaurantRoutingModule} from "./board-restaurant.routing.module";
 
 
 
@@ -8,7 +8,7 @@ import {HomeRoutingModule} from "./home.routing.module";
   declarations: [],
   imports: [
     CommonModule,
-    HomeRoutingModule
+    BoardRestaurantRoutingModule
   ]
 })
-export class HomeModule { }
+export class BoardRestaurantModule { }

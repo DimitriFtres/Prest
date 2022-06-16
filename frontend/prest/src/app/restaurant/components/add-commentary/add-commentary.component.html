@@ -1,0 +1,15 @@
+<ng-container *ngIf="authService.isAuthenticated$.value == true && this.isDisplayed == true">
+  <form class="card-footer py-3 border-0 w-50 mx-auto mt-5" style="background-color: #f8f9fa;" (submit)="submit()" [formGroup]="formCommentary">
+    <div class="d-flex flex-start w-100">
+      <div class="form-text w-100">
+        <label class="form-label" for="textAreaExample">Ajouter votre avis sur le restaurant : </label>
+        <textarea class="form-control" id="textAreaExample" rows="4"
+                  style="background: #fff;" [name]="'text'" formControlName="text"></textarea>
+        <div class="float-end mt-2 pt-1">
+          <input type="submit" class="btn btn-primary btn-sm" value="Ajouter votre commentaire"/>
+        </div>
+      </div>
+    </div>
+
+  </form>
+</ng-container>

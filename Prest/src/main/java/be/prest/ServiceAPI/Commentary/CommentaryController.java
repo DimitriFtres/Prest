@@ -26,7 +26,7 @@ public class CommentaryController {
         return new ApiResponse(true, commentaryRepository.findById(id), BASE_CODE + "detail.success");
     }
 
-    @GetMapping("/detail/{restaurant_id}")
+    @GetMapping("/listForRestaurant/{restaurant_id}")
     public ApiResponse detailForRestaurant(@PathVariable int restaurant_id) {
 
         return new ApiResponse(true, commentaryRepository.findAllByRestaurant(restaurantRepository.findById(restaurant_id)), BASE_CODE + "detail.success");

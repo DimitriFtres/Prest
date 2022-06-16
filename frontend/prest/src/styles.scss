@@ -11,8 +11,13 @@ $font-size-base: 0.9rem !default; // Assumes the browser default, typically `16p
 $font-family-sans-serif: Roboto, 'Helvetica Neue', Arial, sans-serif;
 $font-weight-normal: 500;
 
-@import "~mdb-ui-kit/src/scss/bootstrap/bootstrap";
+$color-negative-rating: $orange;
+$color-ok-rating: $orange;
+$color-positive-rating: $orange;
+$color-default-rating: $orange;
 
+@import "~mdb-ui-kit/src/scss/bootstrap/bootstrap";
+@import '~css-star-rating/scss/star-rating';
 
 .w-90{
   width: 90%;
