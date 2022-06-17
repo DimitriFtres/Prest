@@ -8,7 +8,7 @@
               <div class="d-flex flex-start align-items-center justify-content-between">
                 <div>
                   <p class="fw-bold text-primary mb-1 h6">{{commentary.user.nickname}}</p>
-                  <p class="fw-bold text-primary mb-1 h6"></p>
+                  <p [appDatetime]="commentary.date" class="fw-bold text-primary mb-1 h6"></p>
                 </div>
                 <star-rating [starType]="'svg'" [rating]="commentary.note" [readOnly]="true"></star-rating>
               </div>
