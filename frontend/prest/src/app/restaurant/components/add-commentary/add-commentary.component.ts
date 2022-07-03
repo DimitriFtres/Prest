@@ -40,7 +40,7 @@ export class AddCommentaryComponent implements OnInit {
     console.log(this.formCommentary.value.text)
     this.restaurantService.getDetail(this.restaurant_id).subscribe(restaurant => {
       if(sessionStorage.getItem("user") != null)
-        this.userService.getDetail('1').subscribe(user => {
+        this.userService.getDetail(sessionStorage.getItem("user")!).subscribe(user => {
           const commentaryPayload = {
             text: this.formCommentary.value.text,
             note: this.formCommentary.value.note,

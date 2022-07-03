@@ -15,7 +15,9 @@
 <hr class="bg-primary my-0"/>
   <ng-container *ngIf="informationToDisplay == undefined">
     <app-news [restaurant_id]="restaurant_id!"></app-news>
-    <app-commentary [restaurant_id]="restaurant_id!"></app-commentary>
+    <ng-container *ngFor="let commentary of commentaryService.commentaries$ | async">
+      <app-commentary [commentary]="commentary"></app-commentary>
+    </ng-container>
     <app-add-commentary [restaurant_id]="restaurant_id!"></app-add-commentary>
   </ng-container>
 

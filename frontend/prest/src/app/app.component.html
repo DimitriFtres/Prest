@@ -1,5 +1,7 @@
 <div class="d-flex">
-  <app-private-header></app-private-header>
+  <ng-container *ngIf="this.authService.isAuthenticated$.value == true">
+    <app-private-header></app-private-header>
+  </ng-container>
   <div class="flex-grow-1">
     <router-outlet></router-outlet>
   </div>

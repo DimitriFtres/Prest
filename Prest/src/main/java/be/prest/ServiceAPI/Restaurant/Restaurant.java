@@ -39,7 +39,7 @@ public class Restaurant {
             inverseJoinColumns = {@JoinColumn( name = "id_category", table = "category")})
     List<Category> categories;
 
-    @OneToMany( targetEntity= UserRestaurant.class, mappedBy="id_restaurant" )
+    @OneToMany( targetEntity= UserRestaurant.class, mappedBy="restaurant" )
     private List<UserRestaurant> userRestaurants;
 
     @OneToOne()

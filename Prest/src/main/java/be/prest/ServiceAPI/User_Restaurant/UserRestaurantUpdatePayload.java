@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class UserRestaurantUpdatePayload {
     private int id;
     private Role role;
-    private User id_user;
-    private Restaurant id_restaurant;
+    private User user;
+    private Restaurant restaurant;
 
 }

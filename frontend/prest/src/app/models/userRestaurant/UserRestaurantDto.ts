@@ -6,7 +6,7 @@ export interface UserRestaurantDto extends Dto
 {
   id: number;
   role: string;
-  id_user: User;
-  id_restaurant: Restaurant;
+  user: User;
+  restaurant: Restaurant;
 }
 

@@ -6,6 +6,6 @@ export interface UserRestaurantUpdatePayload extends Payload
 {
   id: number;
   role: string;
-  id_user: User;
-  id_restaurant: Restaurant;
+  user: User;
+  restaurant: Restaurant;
 }

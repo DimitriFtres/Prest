@@ -32,6 +32,7 @@ export class HttpInterceptorService implements HttpInterceptor {
       {
         return req;
       }
+      console.log(this.auth.tokenService.getToken());
       req = req.clone({
         setHeaders: {
           Authorization: `Bearer ${this.auth.tokenService.getToken()}`
@@ -44,10 +45,8 @@ export class HttpInterceptorService implements HttpInterceptor {
   private handleError(err: HttpErrorResponse, req: HttpRequest<any>, next: HttpHandler): Observable<any> {
     if (this.attemps > 1) {
       this.attemps = 0;
-      if(err.status !== 200) {
-        this.auth.navigation.navigateToUnsecure();
-        return throwError(err);
-      }
+      this.auth.navigation.navigateToUnsecure();
+      return throwError(err);
     }
     this.attemps++;
     if (err.error.error === 'unauthorized' || err.status === 401) {

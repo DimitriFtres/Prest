@@ -1,0 +1,16 @@
+<app-header></app-header>
+<ng-container *ngIf="user">
+  <section class="m-auto w-50 card mt-5">
+    <h1 class="text-center my-1">{{user.nickname}}</h1>
+    <hr class="mt-0"/>
+    <h2>Participe à : </h2>
+    <ng-container *ngIf="restaurants != null && restaurants.length > 0">
+      <app-list-restaurant [restaurants]="restaurants"></app-list-restaurant>
+    </ng-container>
+    <h2>Commentaires : </h2>
+    <ng-container *ngFor="let commentary of user.commentaries">
+      <app-commentary [commentary]="commentary"></app-commentary>
+    </ng-container>
+
+  </section>
+</ng-container>

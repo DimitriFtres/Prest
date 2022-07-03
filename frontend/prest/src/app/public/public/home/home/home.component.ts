@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from "../../../../security/service/auth.service";
+import {RestaurantService} from "@service/restaurant/restaurant.service";
+import {Restaurant} from "@restaurant/Restaurant";
 
 @Component({
   selector: 'app-home',
@@ -8,10 +10,14 @@ import {AuthService} from "../../../../security/service/auth.service";
 })
 export class HomeComponent implements OnInit {
 
-  constructor(public authService: AuthService) { }
+  restaurants?: Restaurant[];
+  constructor(public authService: AuthService,
+              public restaurantService: RestaurantService) { }
 
   ngOnInit(): void {
-    console.log(this.authService.isAuthenticated$.value)
+    this.restaurantService.getList().subscribe(restaurants => {
+      this.restaurants = restaurants;
+    })
   }
 
 }

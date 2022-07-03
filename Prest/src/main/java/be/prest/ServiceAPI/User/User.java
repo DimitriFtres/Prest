@@ -29,7 +29,7 @@ public class User {
 //    @OneToMany(mappedBy = "user")
 //    private List<Commentary> commentaries;
 
-    @OneToMany( targetEntity= UserRestaurant.class, mappedBy="id_user" )
+    @OneToMany( targetEntity= UserRestaurant.class, mappedBy="user" )
     private List<UserRestaurant> userRestaurants;
 
     @OneToMany (targetEntity = Address.class)

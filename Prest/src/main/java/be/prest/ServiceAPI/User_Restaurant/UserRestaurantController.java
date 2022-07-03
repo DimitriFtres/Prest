@@ -1,21 +1,38 @@
 package be.prest.ServiceAPI.User_Restaurant;
 
 import be.prest.ServiceAPI.Common.ApiResponse;
+import be.prest.ServiceAPI.User.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("user-restaurant")
+@RequestMapping("userRestaurant")
 public class UserRestaurantController {
     private String BASE_CODE = "api.user-restaurant";
 
     @Autowired
     UserRestaurantRepository userRestaurantRepository;
 
+    @Autowired
+    UserRepository userRepository;
+
     @GetMapping("/list")
     public ApiResponse list(){
         return new ApiResponse(true, userRestaurantRepository.findAll(),BASE_CODE + "list.sucess");
     }
+
+    @GetMapping("/list/user/{id}")
+    public ApiResponse listFromUser(@PathVariable int id){
+        try
+        {
+            User user = userRepository.findById(id);
+            return new ApiResponse(true, userRestaurantRepository.findAllByUser(user),BASE_CODE + "list.sucess");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ApiResponse(false, null, BASE_CODE + "list.error");
+        }
+    }
+
 
     @GetMapping("/detail/{id}")
     public ApiResponse detail(@PathVariable int id) {
@@ -29,9 +46,9 @@ public class UserRestaurantController {
 //                    payload.setOrganisation(orgRepository.save(payload.getOrganisation()));
 //                }
                 UserRestaurant userRestaurant = new UserRestaurant.Builder()
-                        .setId_user(payload.getId_user())
+                        .setUser(payload.getUser())
                         .setRole(payload.getRole())
-                        .setId_restaurant(payload.getId_restaurant())
+                        .setRestaurant(payload.getRestaurant())
                         .build();
                 UserRestaurant newRestaurant = userRestaurantRepository.save(userRestaurant);
                 return new ApiResponse(true, newRestaurant, BASE_CODE + "create.success");

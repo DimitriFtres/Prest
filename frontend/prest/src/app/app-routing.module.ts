@@ -4,6 +4,7 @@ import {UserComponent} from "@signin/user/user.component";
 import {NewsComponent} from "./restaurant/components/news/news.component";
 import {HomeComponent} from "@home/home/home.component";
 import {PublicGuard, SecurityGuard} from "./security/guard";
+import {ProfileComponent} from "./public/public/profile/profile.component";
 
 const routes: Routes = [
   {
@@ -29,6 +30,12 @@ const routes: Routes = [
     path: "restaurant",
     loadChildren: () => import('./restaurant/board-restaurant/board-restaurant.module').then(m => m.BoardRestaurantModule),
     pathMatch: "prefix",
+    canActivate: [PublicGuard]
+  },
+  {
+    path: "profile/:id",
+    component: ProfileComponent,
+    pathMatch: "full",
     canActivate: [PublicGuard]
   }
   // {

@@ -29,6 +29,7 @@ import {StarRatingModule} from "angular-star-rating";
 import {PublicGuard, SecurityGuard} from "./security/guard";
 import {HttpInterceptorService} from "@service/httpService/http.interceptor";
 import { PrivateHeaderComponent } from './private/components/private-header/private-header.component';
+import { ProfileComponent } from './public/public/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { PrivateHeaderComponent } from './private/components/private-header/priv
     AddCommentaryComponent,
     InformationComponent,
     AddresstoStringDirective,
-    PrivateHeaderComponent
+    PrivateHeaderComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

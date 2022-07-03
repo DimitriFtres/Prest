@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from "../../../security/service/auth.service";
+import {UserRestaurantService} from "@service/userRestaurant/user-restaurant.service";
+import {RestaurantService} from "@service/restaurant/restaurant.service";
+import {UserService} from "@service/user/user.service";
+import {UserRestaurant} from "@userRestaurant/UserRestaurant";
+import {User} from "@user/User";
 
 @Component({
   selector: 'app-private-header',
@@ -7,10 +12,16 @@ import {AuthService} from "../../../security/service/auth.service";
   styleUrls: ['./private-header.component.scss']
 })
 export class PrivateHeaderComponent implements OnInit {
-
-  constructor(public authService: AuthService) { }
+  user!: User;
+  constructor(public authService: AuthService,
+              public userRestaurantService: UserRestaurantService,
+              public userService: UserService) { }
 
   ngOnInit(): void {
+    this.userService.getDetailFromEmail(sessionStorage.getItem("user")!).subscribe(user => {
+      this.user = user;
+      this.userRestaurantService.getListFromUser(user.id_user.toString()).subscribe();
+    })
   }
 
   sidebar() {

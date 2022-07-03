@@ -27,18 +27,18 @@ public class UserRestaurant {
 
     @ManyToOne
     @JoinColumn(name="id_user", nullable=false)
-    private User id_user;
+    private User user;
 
     @ManyToOne
     @JoinColumn(name="id_restaurant", nullable=false)
-    private Restaurant id_restaurant;
+    private Restaurant restaurant;
 
     public UserRestaurant(UserRestaurantUpdatePayload userRestaurant)
     {
         this.id = userRestaurant.getId();
         this.role = userRestaurant.getRole();
-        this.id_restaurant = userRestaurant.getId_restaurant();
-        this.id_user = userRestaurant.getId_user();
+        this.restaurant = userRestaurant.getRestaurant();
+        this.user = userRestaurant.getUser();
 
     }
 
@@ -46,11 +46,11 @@ public class UserRestaurant {
     {
         private int id;
         private Role role;
-        private Restaurant id_restaurant;
-        private User id_user;
+        private Restaurant restaurant;
+        private User user;
 
-        public Builder setId_restaurant(Restaurant id_restaurant) {
-            this.id_restaurant = id_restaurant;
+        public Builder setRestaurant(Restaurant restaurant) {
+            this.restaurant = restaurant;
             return this;
         }
 
@@ -59,8 +59,8 @@ public class UserRestaurant {
             return this;
         }
 
-        public Builder setId_user(User id_user) {
-            this.id_user = id_user;
+        public Builder setUser(User user) {
+            this.user = user;
             return this;
         }
 
@@ -71,7 +71,7 @@ public class UserRestaurant {
 
         public UserRestaurant build()
         {
-            return new UserRestaurant(id, role, id_user, id_restaurant);
+            return new UserRestaurant(id, role, user, restaurant);
         }
     }
 }

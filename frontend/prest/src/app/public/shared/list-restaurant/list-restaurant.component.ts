@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {RestaurantService} from "@service/restaurant/restaurant.service";
 import {Restaurant} from "@restaurant/Restaurant";
 import {FormControl, FormGroup} from "@angular/forms";
@@ -11,7 +11,7 @@ import {BehaviorSubject} from "rxjs";
   styleUrls: ['./list-restaurant.component.scss']
 })
 export class ListRestaurantComponent implements OnInit {
-  restaurants?: Restaurant[];
+  @Input() restaurants?: Restaurant[];
   restaurants$: BehaviorSubject<Restaurant[]> = new BehaviorSubject<Restaurant[]>([]);
   restaurantFiltered?: Restaurant[];
   label: string = "";
@@ -22,7 +22,6 @@ export class ListRestaurantComponent implements OnInit {
 
   ngOnInit(): void {
     this.restaurantService.getList().subscribe(restaurants => {
-      this.restaurants = restaurants;
       this.restaurants$.next(restaurants);
     });
   }

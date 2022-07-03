@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UserRestaurantCreatePayload {
     private Role role;
-    private User id_user;
-    private Restaurant id_restaurant;
+    private User user;
+    private Restaurant restaurant;
 
 }

@@ -12,12 +12,10 @@ import {of} from "rxjs";
   styleUrls: ['./commentary.component.scss']
 })
 export class CommentaryComponent implements OnInit {
-  @Input() restaurant_id!: string;
-  constructor(public commentaryService: CommentaryService) { }
+  @Input() commentary?: Commentary;
+  constructor() { }
 
   ngOnInit(): void {
-    this.commentaryService.getListFromRestaurant(this.restaurant_id).subscribe();
-    this.commentaryService.getListFromRestaurant(this.restaurant_id).subscribe();
   }
 
 }

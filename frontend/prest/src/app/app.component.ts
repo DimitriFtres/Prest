@@ -8,5 +8,5 @@ import {AuthService} from "./security/service/auth.service";
 })
 export class AppComponent {
   title = 'prest';
-
+  constructor(public authService: AuthService) { }
 }

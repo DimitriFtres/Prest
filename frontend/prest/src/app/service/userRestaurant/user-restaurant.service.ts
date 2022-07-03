@@ -36,6 +36,15 @@ export class UserRestaurantService extends ApiService{
       );
   }
 
+  getListFromUser(user_id: string): Observable<UserRestaurant[]> {
+    return this.http.get(this.baseUrl+`userRestaurant/list/user/${user_id}`)
+      .pipe(
+        map((response) => {
+          return response.data as UserRestaurant[]
+        })
+      );
+  }
+
   getDetail(userRestaurant_id: string): Observable<UserRestaurant> {
     return this.http.get(this.baseUrl+`userRestaurant/detail/${userRestaurant_id}`)
       .pipe(

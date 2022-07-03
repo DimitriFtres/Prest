@@ -3,6 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import {RestaurantService} from "@service/restaurant/restaurant.service";
 import {Restaurant} from "@restaurant/Restaurant";
 import {RestaurantInformationEnum} from "@common/enum";
+import {CommentaryService} from "@service/commentary/commentary.service";
 
 @Component({
   selector: 'app-home-restaurant',
@@ -17,7 +18,8 @@ export class HomeRestaurantComponent implements OnInit {
   restaurant_id?: string;
 
   constructor(public activatedRoute: ActivatedRoute,
-              public restaurantService: RestaurantService) { }
+              public restaurantService: RestaurantService,
+              public commentaryService: CommentaryService) { }
 
   ngOnInit(): void {
     this.restaurant_id = this.activatedRoute.snapshot.params['id'];
@@ -27,7 +29,9 @@ export class HomeRestaurantComponent implements OnInit {
       this.restaurantService.getDetail(this.restaurant_id.toString()).subscribe(restaurant => {
         this.restaurant = restaurant;
       });
+      this.commentaryService.getListFromRestaurant(this.restaurant_id.toString()).subscribe();
     }
+
   }
 
   informationSelected(information?: string){
