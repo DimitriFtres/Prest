@@ -13,7 +13,7 @@ public class RessourceServerConfiguration extends ResourceServerConfigurerAdapte
         http.cors().and().csrf().disable();
         http.authorizeRequests().antMatchers("/login","/oauth/token", "/account/signup", "/account/signin","/account/refresh").permitAll();
         //possibilité que de lire sur ces url sans connection
-        http.authorizeRequests().antMatchers(HttpMethod.GET, "/category/**", "/commentary/**", "/restaurant/**").permitAll();
+        http.authorizeRequests().antMatchers(HttpMethod.GET, "/category/**", "/commentary/**", "/restaurant/**", "/newsRestaurant/**").permitAll();
         http.authorizeRequests().anyRequest().authenticated();
     }
 }

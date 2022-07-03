@@ -14,12 +14,14 @@
   </div>
 <hr class="bg-primary my-0"/>
   <ng-container *ngIf="informationToDisplay == undefined">
-    <app-news></app-news>
-    <app-commentary></app-commentary>
-    <app-add-commentary></app-add-commentary>
+    <app-news [restaurant_id]="restaurant_id!"></app-news>
+    <app-commentary [restaurant_id]="restaurant_id!"></app-commentary>
+    <app-add-commentary [restaurant_id]="restaurant_id!"></app-add-commentary>
   </ng-container>
 
   <ng-container *ngIf="informationToDisplay != null">
     <app-information [information]="informationToDisplay" [restaurant]="restaurant"></app-information>
   </ng-container>
 </ng-container>
+
+

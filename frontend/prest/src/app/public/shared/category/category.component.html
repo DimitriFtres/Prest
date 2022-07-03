@@ -1,9 +1,22 @@
-<div class="d-flex flex-nowrap align-items-center align-content-center justify-content-center" *ngIf="categories">
+<div class="d-flex flex-nowrap align-items-center align-content-center justify-content-center mt-2" *ngIf="categories">
+  <div class="d-flex flex-column align-items-center justify-content-center" (click)="selected(undefined)" style="width: 150px">
+    <span class="h5">Effacer la sélection</span>
+  </div>
   <ng-container *ngFor="let category of categories">
-    <div class="d-flex flex-column align-items-center justify-content-center" (click)="selected(category)" style="width: 150px">
-      <img src="{{category.img}}" [width]="'75'" [height]="'75'">
-      <span class="h5">{{category.label}}</span>
-    </div>
+    <ng-container *ngIf="selectedOne == category; else elseBlock">
+      <div class="d-flex flex-column align-items-center justify-content-center bg-primary" (click)="selected(category)" style="width: 150px">
+        <img src="{{category.img}}" [width]="'75'" [height]="'75'">
+        <span class="h5">{{category.label}}</span>
+      </div>
+    </ng-container>
+
+    <ng-template #elseBlock>
+      <div class="d-flex flex-column align-items-center justify-content-center" (click)="selected(category)" style="width: 150px">
+        <img src="{{category.img}}" [width]="'75'" [height]="'75'">
+        <span class="h5">{{category.label}}</span>
+      </div>
+    </ng-template>
+
   </ng-container>
 </div>
 <hr class="my-0"/>

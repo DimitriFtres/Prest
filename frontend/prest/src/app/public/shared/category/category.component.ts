@@ -12,6 +12,8 @@ export class CategoryComponent implements OnInit {
   categories!: Category[];
   @Output("category")
   categoryEvent: EventEmitter<Category> = new EventEmitter<Category>();
+  selectedOne?: Category;
+
   constructor(public categoryService : CategoryService) { }
 
   ngOnInit(): void {
@@ -20,8 +22,9 @@ export class CategoryComponent implements OnInit {
       console.log("ok");
     });
   }
-  selected(category: Category)
+  selected(category?: Category)
   {
+    this.selectedOne = category;
     this.categoryEvent.emit(category);
   }
 }

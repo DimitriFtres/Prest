@@ -15,12 +15,15 @@ const routes: Routes = [
   {
     path: "signin",
     loadChildren : () => import('@signin/signin.module').then(m => m.SigninModule),
-    pathMatch: "prefix"
+    pathMatch: "prefix",
+    canActivate: [PublicGuard]
   },
   {
     path: "signup",
     loadChildren : () => import('@signup/signup.module').then(m => m.SignupModule),
-    pathMatch: "prefix"
+    pathMatch: "prefix",
+    canActivate: [PublicGuard]
+
   },
   {
     path: "restaurant",

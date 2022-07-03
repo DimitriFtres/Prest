@@ -1,6 +1,19 @@
 <ng-container *ngIf="restaurant">
-  <div class="card-body">
-    <h5 class="card-title">{{restaurant.label}}</h5>
-    <p class="card-text">{{informationToDisplay}}</p>
-  </div>
+    <div class="container my-2">
+      <div class="row d-flex justify-content-center">
+        <div class="col-md-12 col-lg-10 col-xl-8">
+          <div class="card">
+            <div class="card-body">
+              <div class="d-flex flex-start align-items-center justify-content-between">
+                <div>
+                  <p class="fw-bold text-primary mb-1 h6">{{restaurant.label}}</p>
+                </div>
+              </div>
+              <hr/>
+              <p class="mt-3 mb-4 pb-2">{{informationToDisplay}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 </ng-container>

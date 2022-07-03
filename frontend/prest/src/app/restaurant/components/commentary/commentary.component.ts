@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, Params} from "@angular/router";
 import {Commentary} from "@commentary/Commentary";
 import {CommentaryService} from "@service/commentary/commentary.service";
@@ -12,26 +12,12 @@ import {of} from "rxjs";
   styleUrls: ['./commentary.component.scss']
 })
 export class CommentaryComponent implements OnInit {
-
-  commentaries?: Commentary[];
-  constructor(public activatedRoute: ActivatedRoute,
-              public commentaryService: CommentaryService) { }
+  @Input() restaurant_id!: string;
+  constructor(public commentaryService: CommentaryService) { }
 
   ngOnInit(): void {
-    let restaurant_id = this.activatedRoute.snapshot.params['id'];
-    this.activatedRoute.params.pipe(
-      switchMap((param: Params) => {
-        if(param['id'])
-          return this.commentaryService.getListFromRestaurant(param['id']);
-        else
-          return of({} as Commentary[]);
-      })
-    ).subscribe(commentaries => {
-      this.commentaries = commentaries;
-    })
-    this.commentaryService.getListFromRestaurant(restaurant_id).subscribe(commentaries => {
-      this.commentaries = commentaries;
-    });
+    this.commentaryService.getListFromRestaurant(this.restaurant_id).subscribe();
+    this.commentaryService.getListFromRestaurant(this.restaurant_id).subscribe();
   }
 
 }

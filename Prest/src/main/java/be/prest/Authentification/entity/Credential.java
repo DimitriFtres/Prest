@@ -21,7 +21,6 @@ public class Credential {
     private int id_credential;
 
     @NotNull
-    @JsonIgnore
     @Email
     private String email;
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {CommentaryAddPayload} from "@commentary/CommentaryAddPayload";
 import {ActivatedRoute} from "@angular/router";
@@ -6,6 +6,9 @@ import {CommentaryService} from "@service/commentary/commentary.service";
 import {RestaurantService} from "@service/restaurant/restaurant.service";
 import {AuthService} from "../../../security/service/auth.service";
 import {UserService} from "@service/user/user.service";
+import {switchMap} from "rxjs/operators";
+import {CredentialDto, SigninPayload} from "../../../security/model";
+import {RatingChangeEvent} from "angular-star-rating";
 
 @Component({
   selector: 'app-add-commentary',
@@ -15,50 +18,43 @@ import {UserService} from "@service/user/user.service";
 export class AddCommentaryComponent implements OnInit {
   commentary!: CommentaryAddPayload;
   isDisplayed: boolean = true;
+  @Input() restaurant_id!: string;
 
   formCommentary: FormGroup = new FormGroup({
     text: new FormControl('', [Validators.email, Validators.required]),
+    note: new FormControl('', [Validators.required])
   });
 
-  constructor(public activatedRoute: ActivatedRoute,
-              public commentaryService: CommentaryService,
+  constructor(public commentaryService: CommentaryService,
               public restaurantService: RestaurantService,
               public userService: UserService,
               public authService: AuthService) { }
 
   ngOnInit(): void {
     //verif si user a un lien avec le restaurant si oui alors on desactive l'ajout de commentaire
-    this.restaurantService.getDetail(this.activatedRoute.snapshot.params['id']).subscribe(restaurant => {
-
-      if(sessionStorage.getItem('user') != null)
-      {
-        restaurant.userRestaurants.forEach(userRestaurant => {
-          this.userService.getDetailByEmail(sessionStorage.getItem('user')!).subscribe(user => {
-            if(userRestaurant.id_user == user)
-            {
-              this.isDisplayed = false;
-            }
-          });
-        });
-      }
-    });
-    console.log(this.isDisplayed);
-    console.log(this.authService.isAuthenticated$.value);
+    this.restaurantService.getDetail(this.restaurant_id).subscribe();
   }
 
   submit(): void {
-    this.restaurantService.getDetail(this.activatedRoute.snapshot.params.get['id']).subscribe(restaurant => {
-      this.userService.getDetail(sessionStorage.getItem('user')!).subscribe(user => {
-        this.commentary = {
-          note: 0,
-          text: this.formCommentary.value.text,
-          restaurant: restaurant,
-          user: user,
-          date: new Date()
-        }
-        this.commentaryService.create(this.commentary).subscribe();
-      });
+    console.log(this.formCommentary.value.note)
+    console.log(this.formCommentary.value.text)
+    this.restaurantService.getDetail(this.restaurant_id).subscribe(restaurant => {
+      if(sessionStorage.getItem("user") != null)
+        this.userService.getDetail('1').subscribe(user => {
+          const commentaryPayload = {
+            text: this.formCommentary.value.text,
+            note: this.formCommentary.value.note,
+            date: new Date(),
+            restaurant: restaurant,
+            user: user
+          } as CommentaryAddPayload
+          this.commentaryService.create(commentaryPayload).subscribe( () => this.formCommentary.reset());
+        });
     });
   }
 
+  ratingChange($event: RatingChangeEvent) {
+    this.formCommentary.value.note = $event.rating;
+    console.log(this.formCommentary.value.note);
+  }
 }

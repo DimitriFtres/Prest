@@ -30,9 +30,6 @@ public class UserController {
     @PostMapping("/create")
     public ApiResponse create(@RequestBody UserCreatePayload payload) {
             try {
-//                if(orgRepository.findById(payload.getOrganisation().getId()) == null){
-//                    payload.setOrganisation(orgRepository.save(payload.getOrganisation()));
-//                }
                 User user = new User.Builder()
                         .setNickname(payload.getNickname())
                         .setAddresses(payload.getAddresses())

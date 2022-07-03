@@ -29,4 +29,10 @@ export class TokenService {
   public getRefreshToken(): string | null {
     return this.localStorage.getItem(REFRESHTOKEN_KEY);
   }
+
+  public isLocalStorageEmpty(): boolean {
+    if(this.localStorage.getItem(TOKEN_KEY) == null && this.localStorage.getItem(REFRESHTOKEN_KEY) == null)
+      return true;
+    return false;
+  }
 }

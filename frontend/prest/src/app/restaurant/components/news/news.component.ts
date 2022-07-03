@@ -1,4 +1,16 @@
-import {ChangeDetectorRef, Component, ElementRef, OnInit, Renderer2, TemplateRef, ViewChild} from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  Input,
+  OnInit,
+  Renderer2,
+  TemplateRef,
+  ViewChild
+} from '@angular/core';
+import {NewsRestaurantService} from "@service/newsRestaurant/news-restaurant.service";
+import {NewsRestaurant} from "@newsRestaurant/NewsRestaurant";
+import {AuthService} from "../../../security/service/auth.service";
 
 
 @Component({
@@ -11,8 +23,15 @@ import {ChangeDetectorRef, Component, ElementRef, OnInit, Renderer2, TemplateRef
 })
 export class NewsComponent implements OnInit {
 
+  @Input() restaurant_id!: string;
+  news?: NewsRestaurant[];
+  constructor(public newsRestaurantService: NewsRestaurantService,
+              public authService: AuthService) {
+  }
   ngOnInit(): void {
-    // implementer l'ajout dans le fil d'actualités
+    this.newsRestaurantService.getListFromRestaurant(this.restaurant_id).subscribe(news => {
+      this.news = news;
+    });
   }
 
 

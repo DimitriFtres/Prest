@@ -40,7 +40,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .loginPage("/login")
                 .permitAll()
                 .and()
-                .logout() // Metodo get pues he desabilitado CSRF
+                .logout()
                 .permitAll();
     }
 

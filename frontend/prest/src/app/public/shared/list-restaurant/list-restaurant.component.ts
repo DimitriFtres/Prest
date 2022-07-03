@@ -3,6 +3,7 @@ import {RestaurantService} from "@service/restaurant/restaurant.service";
 import {Restaurant} from "@restaurant/Restaurant";
 import {FormControl, FormGroup} from "@angular/forms";
 import {Category} from "@category/Category";
+import {BehaviorSubject} from "rxjs";
 
 @Component({
   selector: 'app-list-restaurant',
@@ -11,6 +12,7 @@ import {Category} from "@category/Category";
 })
 export class ListRestaurantComponent implements OnInit {
   restaurants?: Restaurant[];
+  restaurants$: BehaviorSubject<Restaurant[]> = new BehaviorSubject<Restaurant[]>([]);
   restaurantFiltered?: Restaurant[];
   label: string = "";
   city: string = "";
@@ -21,27 +23,26 @@ export class ListRestaurantComponent implements OnInit {
   ngOnInit(): void {
     this.restaurantService.getList().subscribe(restaurants => {
       this.restaurants = restaurants;
+      this.restaurants$.next(restaurants);
     });
   }
   labelChange(event: any) {
     this.label = event.target.value;
-
     if(this.restaurants)
     {
-      this.restaurants.filter((restaurant) => {
-         return this.addRestaurantFiltered(restaurant, this.label, this.category, this.city);
-      });
+      this.restaurants$.next(this.restaurants.filter((restaurant) => {
+        return this.addRestaurantFiltered(restaurant, this.label, this.category, this.city);
+      }));
     }
 
   }
   categoryChange(category: Category) {
     this.category = category;
-
     if(this.restaurants)
     {
-      this.restaurants.filter((restaurant) => {
+      this.restaurants$.next(this.restaurants.filter((restaurant) => {
         return this.addRestaurantFiltered(restaurant, this.label, this.category, this.city);
-      });
+      }));
     }
   }
   cityChange(event: any) {
@@ -49,25 +50,20 @@ export class ListRestaurantComponent implements OnInit {
 
     if(this.restaurants)
     {
-      this.restaurants.filter((restaurant) => {
+      this.restaurants$.next(this.restaurants.filter((restaurant) => {
         return this.addRestaurantFiltered(restaurant, this.label, this.category, this.city);
-      });
+      }));
     }
   }
 
   addRestaurantFiltered(restaurant: Restaurant, label: string, category: Category, city: string) : boolean{
-    if(restaurant.label.includes(label) && restaurant.address.town.includes(city))
+    if(restaurant.label.toLowerCase().includes(label.toLowerCase()) && restaurant.address.town.toLowerCase().includes(city.toLowerCase()))
     {
-      if(category == null)
-      {
+      if(!category){
         return true;
       }
-      else
-      {
-        if(restaurant.categories.includes(category)){
-          return true;
-        }
-        return false;
+      if(restaurant.categories.includes(category)){
+        return true;
       }
     }
     return false;

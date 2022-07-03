@@ -5,14 +5,13 @@
     <h1 class="h2 mb-3 fw-normal">Connection</h1>
 
     <div class="form-floating">
-      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" [name]="'email'" formControlName="email">
+      <input type="email" class="form-control" id="floatingInput" placeholder="nom@exemple.com" [name]="'email'" formControlName="email">
       <label for="floatingInput" class="h5">Email</label>
     </div>
     <div class="form-floating">
-      <input type="password" class="form-control" id="floatingPassword" placeholder="Password" [name]="'password'" formControlName="password">
+      <input type="password" class="form-control" id="floatingPassword" placeholder="Mot de passe" [name]="'password'" formControlName="password">
       <label for="floatingPassword" class="h5">Mot de passe</label>
     </div>
     <button class="w-100 btn btn-lg btn-primary mt-3" type="submit" [disabled]="formCredential.invalid">Se connecter</button>
-    <p class="mt-5 mb-3 text-muted">© 2021–2022</p>
   </form>
 </section>

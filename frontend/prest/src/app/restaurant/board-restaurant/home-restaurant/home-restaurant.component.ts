@@ -14,20 +14,20 @@ export class HomeRestaurantComponent implements OnInit {
   restaurant?: Restaurant;
   informations = RestaurantInformationEnum;
   informationToDisplay?: RestaurantInformationEnum;
+  restaurant_id?: string;
 
   constructor(public activatedRoute: ActivatedRoute,
               public restaurantService: RestaurantService) { }
 
   ngOnInit(): void {
-    let restaurant_id = this.activatedRoute.snapshot.params['id'];
+    this.restaurant_id = this.activatedRoute.snapshot.params['id'];
 
-    if(restaurant_id != null)
+    if(this.restaurant_id != null)
     {
-      this.restaurantService.getDetail(restaurant_id).subscribe(restaurant => {
+      this.restaurantService.getDetail(this.restaurant_id.toString()).subscribe(restaurant => {
         this.restaurant = restaurant;
       });
     }
-
   }
 
   informationSelected(information?: string){

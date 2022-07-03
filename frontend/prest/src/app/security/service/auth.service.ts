@@ -4,7 +4,7 @@ import {map} from 'rxjs/operators';
 import {ApiService} from "@service/apiService/api.service";
 import {TokenService} from "./token.service";
 import {HttpService} from "@service/httpService/http.service";
-import {RefreshPayload, SigninPayload, TokenDto} from "../model";
+import {Credential, RefreshPayload, SigninPayload, SignupPayload, TokenDto} from "../model";
 import {ApiResponse} from "@common/ApiResponse";
 import {ApiUriEnum} from "@common/enum";
 import {SigninResponse} from "../model/response/signin.response";
@@ -15,8 +15,6 @@ import {NavigationService} from "@service/httpService/navigation.service";
 })
 export class AuthService extends ApiService {
   isAuthenticated$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-
-  public http: HttpService;
 
   constructor(public tokenService: TokenService, http: HttpService, public navigation: NavigationService) {
     super(http);
@@ -39,12 +37,34 @@ export class AuthService extends ApiService {
     )
   }
 
-  me(): Observable<ApiResponse> {
-    return this.http.get(`${this.baseUrl}${ApiUriEnum.ME}`);
+  me(): Observable<Credential> {
+    return this.http.get(`${this.baseUrl}${ApiUriEnum.ME}`).pipe(
+      map(response => {
+        if(response.result)
+        {
+          return response.data as Credential;
+        }
+        else
+        {
+          return {} as Credential;
+        }
+      })
+    );
   }
 
-  signup(): Observable<ApiResponse> {
-    return of({result: true, data: {} as Object, code: ''})
+  signup(payload: SignupPayload): Observable<Credential> {
+    return this.http.post(`${this.baseUrl}${ApiUriEnum.SIGNUP}`, payload).pipe(
+      map(response => {
+        if(response.result)
+        {
+          return response.data as Credential;
+        }
+        else
+        {
+          return {} as Credential;
+        }
+      })
+    );
   }
 
   refreshToken(refresh: RefreshPayload): Observable<ApiResponse> {

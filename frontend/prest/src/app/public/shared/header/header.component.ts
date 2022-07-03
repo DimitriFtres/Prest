@@ -19,4 +19,14 @@ export class HeaderComponent implements OnInit {
   logout() {
     this.authService.logout();
   }
+
+  sidebar() {
+    let sidebar = document.getElementById("sidebar");
+    console.log(sidebar);
+    if(sidebar != null) {
+      console.log(sidebar.style.display)
+      if (sidebar.style.visibility == 'hidden')
+        sidebar.style.visibility = '';
+    }
+  }
 }

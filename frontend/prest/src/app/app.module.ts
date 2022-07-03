@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import {HeaderComponent} from "./public/shared/header/header.component";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CategoryComponent } from './public/shared/category/category.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {ImagePresentationComponent} from "./public/shared/image-presentation/image-presentation.component";
 import {HomeComponent} from "@home/home/home.component";
 import { ListRestaurantComponent } from './public/shared/list-restaurant/list-restaurant.component';
@@ -27,7 +27,8 @@ import {AddresstoStringDirective} from "@directive/address";
 import {BoardRestaurantModule} from "./restaurant/board-restaurant/board-restaurant.module";
 import {StarRatingModule} from "angular-star-rating";
 import {PublicGuard, SecurityGuard} from "./security/guard";
-import { DatetimeDirective } from '@directive/date';
+import {HttpInterceptorService} from "@service/httpService/http.interceptor";
+import { PrivateHeaderComponent } from './private/components/private-header/private-header.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,7 @@ import { DatetimeDirective } from '@directive/date';
     AddCommentaryComponent,
     InformationComponent,
     AddresstoStringDirective,
-    DatetimeDirective,
+    PrivateHeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -58,10 +59,16 @@ import { DatetimeDirective } from '@directive/date';
     FormsModule,
     BoardRestaurantModule,
     StarRatingModule.forRoot(),
+    HttpClientModule
   ],
   providers: [
     SecurityGuard,
-    PublicGuard
+    PublicGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpInterceptorService,
+      multi: true,
+    }
   ],
   exports: [],
   bootstrap: [AppComponent]

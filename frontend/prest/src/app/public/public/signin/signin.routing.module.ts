@@ -1,7 +1,6 @@
 import {RouterModule, Routes} from "@angular/router";
 import {NgModule} from "@angular/core";
 import {UserComponent} from "@signin/user/user.component";
-import {RestaurantComponent} from "@signin/restaurant/restaurant.component";
 
 const routes:Routes = [
   {
@@ -12,11 +11,6 @@ const routes:Routes = [
   {
     path: "user",
     redirectTo : "",
-    pathMatch: "full"
-  },
-  {
-    path: "restaurant",
-    component: RestaurantComponent,
     pathMatch: "full"
   }
 ];

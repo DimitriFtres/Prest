@@ -28,6 +28,10 @@ export class HttpInterceptorService implements HttpInterceptor {
 
   private addToken(req: HttpRequest<any>): HttpRequest<any> {
     if (!req.url.includes(ApiUriEnum.SIGNIN) && !req.url.includes(ApiUriEnum.SIGNUP) && !req.url.includes(ApiUriEnum.REFRESH_TOKEN)) {
+      if(this.auth.tokenService.isLocalStorageEmpty())
+      {
+        return req;
+      }
       req = req.clone({
         setHeaders: {
           Authorization: `Bearer ${this.auth.tokenService.getToken()}`
@@ -40,8 +44,10 @@ export class HttpInterceptorService implements HttpInterceptor {
   private handleError(err: HttpErrorResponse, req: HttpRequest<any>, next: HttpHandler): Observable<any> {
     if (this.attemps > 1) {
       this.attemps = 0;
-      this.auth.navigation.navigateToUnsecure();
-      return throwError(err);
+      if(err.status !== 200) {
+        this.auth.navigation.navigateToUnsecure();
+        return throwError(err);
+      }
     }
     this.attemps++;
     if (err.error.error === 'unauthorized' || err.status === 401) {
@@ -56,12 +62,7 @@ export class HttpInterceptorService implements HttpInterceptor {
           if (!response.result) {
             return throwError(err);
           }
-          const cloneReq = this.addToken(req);
-          return next.handle(cloneReq).pipe(
-            catchError((err: HttpErrorResponse) => {
-              return this.handleError(err, req, next)
-            })
-          )
+          return this.intercept(req, next);
         }));
       }
     }

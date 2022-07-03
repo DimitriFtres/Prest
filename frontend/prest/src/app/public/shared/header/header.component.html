@@ -1,6 +1,11 @@
 <header>
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-light bg-primary h5 mb-0 py-3">
+    <ng-container *ngIf="isConnected == true">
+      <svg (click)="sidebar()" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+      </svg>
+    </ng-container>
     <div
       class="container-md d-flex align-items-center justify-content-end"
       id="backgroundImageExample">
@@ -15,8 +20,7 @@
           <a class="navbar-brand mb-0 h1" href="">Restaurants</a>
         </li>
       </ul>
-      <ng-container *ngIf="isConnected">
-        <ng-container *ngIf="isConnected == true; else deconnexion">
+        <ng-container *ngIf="isConnected == false; else deconnexion">
           <div class="nav-item">
             <a class="navbar-brand mb-0 h1 link-info" href="/signin/user">Connexion</a>
             <a class="navbar-brand mb-0 h1 link-info" href="/signup/user">Inscription</a>
@@ -27,7 +31,6 @@
             <a class="navbar-brand mb-0 h1 link-info" href="/signin/user" (click)="logout()">Déconnexion</a>
           </div>
         </ng-template>
-      </ng-container>
     </div>
   </nav>
 </header>
