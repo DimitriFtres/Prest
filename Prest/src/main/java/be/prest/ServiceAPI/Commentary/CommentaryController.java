@@ -2,6 +2,7 @@ package be.prest.ServiceAPI.Commentary;
 
 import be.prest.ServiceAPI.Common.ApiResponse;
 import be.prest.ServiceAPI.Restaurant.*;
+import be.prest.ServiceAPI.User.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,9 +17,12 @@ public class CommentaryController {
     @Autowired
     RestaurantRepository restaurantRepository;
 
+    @Autowired
+    UserRepository userRepository;
+
     @GetMapping("/list")
     public ApiResponse list(){
-        return new ApiResponse(true, commentaryRepository.findAll(),BASE_CODE + "list.sucess");
+        return new ApiResponse(true, commentaryRepository.findAllByActif(true),BASE_CODE + "list.sucess");
     }
 
     @GetMapping("/detail/{id}")
@@ -29,15 +33,17 @@ public class CommentaryController {
     @GetMapping("/listForRestaurant/{restaurant_id}")
     public ApiResponse detailForRestaurant(@PathVariable int restaurant_id) {
 
-        return new ApiResponse(true, commentaryRepository.findAllByRestaurant(restaurantRepository.findById(restaurant_id)), BASE_CODE + "detail.success");
+        return new ApiResponse(true, commentaryRepository.findAllByRestaurantAndActif(restaurantRepository.findById(restaurant_id), true), BASE_CODE + "detail.success");
+    }
+
+    @GetMapping("/listForUser/{user_id}")
+    public ApiResponse detailForUser(@PathVariable int user_id) {
+        return new ApiResponse(true, commentaryRepository.findAllByUserAndActif(userRepository.findById(user_id), true), BASE_CODE + "detail.success");
     }
 
     @PostMapping("/create")
     public ApiResponse create(@RequestBody CommentaryCreatePayload payload) {
             try {
-//                if(orgRepository.findById(payload.getOrganisation().getId()) == null){
-//                    payload.setOrganisation(orgRepository.save(payload.getOrganisation()));
-//                }
                 Commentary commentary = new Commentary.Builder()
                         .setNote(payload.getNote())
                         .setText(payload.getText())

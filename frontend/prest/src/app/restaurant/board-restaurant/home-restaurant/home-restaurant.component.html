@@ -4,7 +4,7 @@
   <app-image-presentation [url]="restaurant.image"></app-image-presentation>
   <div class="d-flex flex-nowrap my-2 justify-content-center">
     <div (click)="informationSelected(undefined)" class="d-flex align-items-center">
-      <p class="h4 px-3 mx-2 btn btn-outline-primary my-0">Acceuil</p>
+      <p class="h4 px-3 mx-2 btn btn-outline-primary my-0">Accueil</p>
     </div>
     <ng-container *ngFor="let information of informations | keyvalue">
       <div (click)="informationSelected(information.value)" class="d-flex align-items-center">
@@ -16,7 +16,7 @@
   <ng-container *ngIf="informationToDisplay == undefined">
     <app-news [restaurant_id]="restaurant_id!"></app-news>
     <ng-container *ngFor="let commentary of commentaryService.commentaries$ | async">
-      <app-commentary [commentary]="commentary"></app-commentary>
+      <app-commentary [commentary]="commentary" [user]="user"></app-commentary>
     </ng-container>
     <app-add-commentary [restaurant_id]="restaurant_id!"></app-add-commentary>
   </ng-container>

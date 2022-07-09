@@ -32,7 +32,6 @@ export class HttpInterceptorService implements HttpInterceptor {
       {
         return req;
       }
-      console.log(this.auth.tokenService.getToken());
       req = req.clone({
         setHeaders: {
           Authorization: `Bearer ${this.auth.tokenService.getToken()}`
@@ -59,6 +58,7 @@ export class HttpInterceptorService implements HttpInterceptor {
         }
         return this.auth.refreshToken(refreshPayload).pipe(switchMap((response: ApiResponse) => {
           if (!response.result) {
+            localStorage.clear();
             return throwError(err);
           }
           return this.intercept(req, next);

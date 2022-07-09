@@ -7,8 +7,6 @@ import {Credential} from "../../security/model";
 export interface UserAddPayload extends Payload
 {
   nickname: string;
-  commentaries: Commentary[];
-  userRestaurants: UserRestaurant[];
   addresses: Address[];
   credential: Credential;
 }

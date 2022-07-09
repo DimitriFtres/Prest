@@ -75,7 +75,7 @@ export class CommentaryService extends ApiService{
           }
         }),
         tap((response: Commentary[]) => {
-          this.commentaries$.next(response);
+          this.getListFromRestaurant(payload.restaurant.id_restaurant.toString());
         })
       );
 
@@ -101,6 +101,23 @@ export class CommentaryService extends ApiService{
   getListFromRestaurant(restaurant_id: string) : Observable<Commentary[]> {
     const headers = new Headers();
     return this.http.get(this.baseUrl+`commentary/listForRestaurant/${restaurant_id}`)
+      .pipe(
+        map((response) => {
+          if(response.result){
+            return response.data as Commentary[]
+          }else{
+            return [];
+          }
+        }),
+        tap((response: Commentary[]) => {
+          this.commentaries$.next(response);
+        })
+      );
+  }
+
+  getListFromUser(user_id: string) : Observable<Commentary[]> {
+    const headers = new Headers();
+    return this.http.get(this.baseUrl+`commentary/listForUser/${user_id}`)
       .pipe(
         map((response) => {
           if(response.result){

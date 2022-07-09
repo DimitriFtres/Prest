@@ -5,5 +5,4 @@ export interface CategoryAddPayload extends Payload
 {
   label: string;
   img: string;
-  restaurants: Restaurant[];
 }

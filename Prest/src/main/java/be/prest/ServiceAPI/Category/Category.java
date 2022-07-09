@@ -1,6 +1,7 @@
 package be.prest.ServiceAPI.Category;
 
 import be.prest.ServiceAPI.Restaurant.Restaurant;
+import com.fasterxml.jackson.annotation.*;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,6 +23,7 @@ public class Category {
     private String label;
     private String img;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "categories")
     private List<Restaurant> restaurants;
 

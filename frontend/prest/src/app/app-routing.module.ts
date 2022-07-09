@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {UserComponent} from "@signin/user/user.component";
-import {NewsComponent} from "./restaurant/components/news/news.component";
+import {NewsComponent} from "./public/shared/news/news.component";
 import {HomeComponent} from "@home/home/home.component";
 import {PublicGuard, SecurityGuard} from "./security/guard";
 import {ProfileComponent} from "./public/public/profile/profile.component";
+import {ModifyUserInformationsComponent} from "./private/page/modify-user-informations/modify-user-informations.component";
+import {NotFoundComponent} from "@notFound/not-found/not-found.component";
 
 const routes: Routes = [
   {
@@ -37,12 +39,18 @@ const routes: Routes = [
     component: ProfileComponent,
     pathMatch: "full",
     canActivate: [PublicGuard]
-  }
-  // {
-  //   path: "**",
-  //   component: NotFoundComponent,
-  //   pathMatch: "full"
-  // },
+  },
+  {
+    path:"modifyUser/:id",
+    component: ModifyUserInformationsComponent,
+    pathMatch: "full",
+    canActivate: [SecurityGuard]
+  },
+  {
+    path: "**",
+    component: NotFoundComponent,
+    pathMatch: "full"
+  },
 ];
 
 @NgModule({

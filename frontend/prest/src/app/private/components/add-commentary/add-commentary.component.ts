@@ -17,12 +17,10 @@ import {RatingChangeEvent} from "angular-star-rating";
 })
 export class AddCommentaryComponent implements OnInit {
   commentary!: CommentaryAddPayload;
-  isDisplayed: boolean = true;
   @Input() restaurant_id!: string;
-
+  note?: number;
   formCommentary: FormGroup = new FormGroup({
     text: new FormControl('', [Validators.email, Validators.required]),
-    note: new FormControl('', [Validators.required])
   });
 
   constructor(public commentaryService: CommentaryService,
@@ -36,14 +34,12 @@ export class AddCommentaryComponent implements OnInit {
   }
 
   submit(): void {
-    console.log(this.formCommentary.value.note)
-    console.log(this.formCommentary.value.text)
     this.restaurantService.getDetail(this.restaurant_id).subscribe(restaurant => {
       if(sessionStorage.getItem("user") != null)
-        this.userService.getDetail(sessionStorage.getItem("user")!).subscribe(user => {
+        this.userService.getDetailFromEmail(sessionStorage.getItem("user")!).subscribe(user => {
           const commentaryPayload = {
             text: this.formCommentary.value.text,
-            note: this.formCommentary.value.note,
+            note: this.note,
             date: new Date(),
             restaurant: restaurant,
             user: user
@@ -54,7 +50,6 @@ export class AddCommentaryComponent implements OnInit {
   }
 
   ratingChange($event: RatingChangeEvent) {
-    this.formCommentary.value.note = $event.rating;
-    console.log(this.formCommentary.value.note);
+    this.note = $event.rating;
   }
 }

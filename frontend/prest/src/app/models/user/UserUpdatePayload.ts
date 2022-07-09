@@ -7,7 +7,5 @@ export interface UserUpdatePayload extends Payload
 {
   id_user: number;
   nickname: string;
-  commentaries: Commentary[];
-  userRestaurants: UserRestaurant[];
   addresses: Address[];
 }

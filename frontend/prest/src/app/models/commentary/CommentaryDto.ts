@@ -10,5 +10,7 @@ export interface CommentaryDto extends Dto
   restaurant: Restaurant;
   user: User;
   date: Date;
+  actif: boolean;
+
 }
 

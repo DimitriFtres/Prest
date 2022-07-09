@@ -7,8 +7,6 @@ export interface UserDto extends Dto
 {
   id_user: number;
   nickname: string;
-  commentaries: Commentary[];
-  userRestaurants: UserRestaurant[];
   addresses: Address[];
 }
 

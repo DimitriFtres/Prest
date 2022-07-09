@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.*;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("news-restaurant")
+@RequestMapping("newsRestaurant")
 public class NewsRestaurantController {
     private String BASE_CODE = "api.restaurant";
 

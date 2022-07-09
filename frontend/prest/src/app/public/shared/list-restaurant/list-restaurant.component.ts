@@ -12,6 +12,7 @@ import {BehaviorSubject} from "rxjs";
 })
 export class ListRestaurantComponent implements OnInit {
   @Input() restaurants?: Restaurant[];
+  @Input() displaySorting:boolean = true;
   restaurants$: BehaviorSubject<Restaurant[]> = new BehaviorSubject<Restaurant[]>([]);
   restaurantFiltered?: Restaurant[];
   label: string = "";

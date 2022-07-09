@@ -18,6 +18,7 @@ public class CommentaryCreatePayload {
     private Timestamp date;
     private Restaurant restaurant;
     private User user;
+    private boolean actif;
 
 
 }

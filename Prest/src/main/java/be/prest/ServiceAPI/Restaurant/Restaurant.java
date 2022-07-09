@@ -3,6 +3,7 @@ package be.prest.ServiceAPI.Restaurant;
 import be.prest.ServiceAPI.Address.Address;
 import be.prest.ServiceAPI.Category.Category;
 import be.prest.ServiceAPI.User_Restaurant.UserRestaurant;
+import com.fasterxml.jackson.annotation.*;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,12 +34,13 @@ public class Restaurant {
 
     private String image;
 
-    @ManyToMany
+    @ManyToMany()
     @JoinTable( name = "restaurant_category",
             joinColumns = {@JoinColumn( name = "id_restaurant", table = "restaurant")},
             inverseJoinColumns = {@JoinColumn( name = "id_category", table = "category")})
     List<Category> categories;
 
+    @JsonIgnore
     @OneToMany( targetEntity= UserRestaurant.class, mappedBy="restaurant" )
     private List<UserRestaurant> userRestaurants;
 

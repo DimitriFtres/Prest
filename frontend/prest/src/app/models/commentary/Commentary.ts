@@ -9,4 +9,5 @@ export interface Commentary {
   restaurant: Restaurant;
   user: User;
   date: Date;
+  actif: boolean;
 }

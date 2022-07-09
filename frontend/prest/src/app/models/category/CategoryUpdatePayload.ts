@@ -6,5 +6,4 @@ export interface CategoryUpdatePayload extends Payload
   id_category: number;
   label: string;
   img: string;
-  restaurants: Restaurant[];
 }

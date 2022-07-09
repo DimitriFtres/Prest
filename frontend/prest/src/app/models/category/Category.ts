@@ -5,7 +5,6 @@ export interface Category {
   id_category: number;
   label: string;
   img: string;
-  restaurants: Restaurant[];
 
 }
 

@@ -3,9 +3,11 @@
 /* Importing Bootstrap SCSS file. */
 
 $orange: #ff7800;
+$danger: #dc3545;
 $primary: $orange;
 $theme-colors: (
-  "primary": $orange
+  "primary": $orange,
+  "danger": $danger
 );
 $font-size-base: 0.9rem !default; // Assumes the browser default, typically `16px`
 $font-family-sans-serif: Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -23,5 +25,11 @@ $color-default-rating: $orange;
   width: 90%;
 }
 
+.x-scroll::-webkit-scrollbar {
+  color: white;
+  height: 10px;
+}
 
-
+.x-scroll::-webkit-scrollbar-thumb {
+  background-color: $primary;
+}

@@ -1,44 +1,45 @@
-<div class="fixed-top" id="sidebar" [style]="'width: 280px'">
-  <div class="d-flex flex-column flex-shrink-0 p-3 bg-primary vh-100">
-    <div class="d-flex">
-      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none text-white">
-        <span class="fs-4">Menu</span>
-      </a>
-      <svg (click)="sidebar()" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
-        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-      </svg>
-    </div>
-      <hr>
-      <ul class="nav nav-pills flex-column mb-auto">
-        <li class="nav-item">
-          <a href="/profile/{{user.id_user}}" class="nav-link text-white">
-            <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
-            Profil
-          </a>
-        </li>
-        <li>
-          <a href="#" class="nav-link link-dark text-white">
-            <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
-            Modifier vos informations
-          </a>
-        </li>
-        <ng-container *ngIf="this.userRestaurantService.userRestaurants$.value.length > 0">
+<ng-container *ngIf="user">
+  <div class="fixed-top" id="sidebar" [style]="'width: 280px; visibility: hidden;'">
+    <div class="d-flex flex-column flex-shrink-0 p-3 bg-primary vh-100">
+      <div class="d-flex">
+        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none text-white">
+          <span class="fs-4">Menu</span>
+        </a>
+        <svg (click)="sidebar()" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+        </svg>
+      </div>
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto">
+          <li class="nav-item">
+            <a href="/profile/{{user.id_user}}" class="nav-link text-white">
+              <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
+              Profil
+            </a>
+          </li>
           <li>
-            <a href="#" class="nav-link link-dark text-white">
-              <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
-              Restaurants
+            <a href="/modifyUser/{{user.id_user}}" class="nav-link link-dark text-white">
+              <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+              Modifier vos informations
             </a>
           </li>
-          <ng-container *ngFor="let userRestaurant of this.userRestaurantService.userRestaurants$ | async">
+          <ng-container *ngIf="this.userRestaurantService.userRestaurants$.value.length > 0">
             <li>
-            <a href="#" class="nav-link link-dark text-white">
-              <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
-              {{userRestaurant.restaurant.label}}
-            </a>
-          </li>
+              <a href="#" class="nav-link link-dark text-white">
+                <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
+                Restaurants
+              </a>
+            </li>
+            <ng-container *ngFor="let userRestaurant of this.userRestaurantService.userRestaurants$ | async">
+              <li>
+              <a href="restaurant/{{userRestaurant.restaurant.id_restaurant}}" class="nav-link link-dark text-white">
+                <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
+                {{userRestaurant.restaurant.label}}
+              </a>
+            </li>
+            </ng-container>
           </ng-container>
-        </ng-container>
-      </ul>
-    </div>
-</div>
-
+        </ul>
+      </div>
+  </div>
+</ng-container>

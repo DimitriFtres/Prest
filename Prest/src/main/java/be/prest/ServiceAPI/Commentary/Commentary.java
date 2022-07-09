@@ -30,6 +30,8 @@ public class Commentary {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    private boolean actif;
+
     public Commentary(CommentaryUpdatePayload commentary)
     {
         this.id_commentary = commentary.getId_commentary();
@@ -38,7 +40,7 @@ public class Commentary {
         this.text = commentary.getText();
         this.date = commentary.getDate();
         this.user = commentary.getUser();
-
+        this.actif = commentary.isActif();
     }
 
     public static class Builder
@@ -49,6 +51,8 @@ public class Commentary {
         private Timestamp date;
         private Restaurant restaurant;
         private User user;
+        private boolean actif;
+
 
         public Builder setId_commentary(int id_commentary) {
             this.id_commentary = id_commentary;
@@ -80,9 +84,14 @@ public class Commentary {
             return this;
         }
 
+        public Builder setActif(boolean actif) {
+            this.actif = actif;
+            return this;
+        }
+
         public Commentary build()
         {
-            return new Commentary(id_commentary, note, text, date, restaurant, user);
+            return new Commentary(id_commentary, note, text, date, restaurant, user, actif);
         }
     }
 
