@@ -21,6 +21,7 @@ public class Commentary {
     private int id_commentary;
     @NotNull
     private double note;
+    @Column(columnDefinition = "TEXT")
     private String text;
     private Timestamp date;
     @ManyToOne

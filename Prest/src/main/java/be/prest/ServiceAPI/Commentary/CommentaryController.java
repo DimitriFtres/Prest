@@ -50,6 +50,7 @@ public class CommentaryController {
                         .setDate(payload.getDate())
                         .setRestaurant((payload.getRestaurant()))
                         .setUser(payload.getUser())
+                        .setActif(payload.isActif())
                         .build();
                 Commentary newCommentary = commentaryRepository.save(commentary);
                 return new ApiResponse(true, newCommentary, BASE_CODE + "create.success");

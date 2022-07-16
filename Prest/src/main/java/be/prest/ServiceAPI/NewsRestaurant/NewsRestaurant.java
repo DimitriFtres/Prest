@@ -18,6 +18,7 @@ public class NewsRestaurant {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_news_restaurant;
     @NotNull
+    @Column(columnDefinition = "TEXT")
     private String text;
     private Timestamp date;
     @ManyToOne

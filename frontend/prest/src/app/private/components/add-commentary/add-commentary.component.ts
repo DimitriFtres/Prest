@@ -42,7 +42,8 @@ export class AddCommentaryComponent implements OnInit {
             note: this.note,
             date: new Date(),
             restaurant: restaurant,
-            user: user
+            user: user,
+            actif: true
           } as CommentaryAddPayload
           this.commentaryService.create(commentaryPayload).subscribe( () => this.formCommentary.reset());
         });
