@@ -64,18 +64,16 @@ export class AddressService extends ApiService{
       );
   }
 
-  create(payload: AddressAddPayload): Observable<Address[]> {
+  create(payload: AddressAddPayload): Observable<Address> {
     return this.http.post(this.baseUrl+'address/create', payload)
       .pipe(
-        switchMap((response) => {
-          if(response.result){
-            return this.getList();
-          } else{
-            return of([]);
-          }
+        map((response) => {
+          return response.data as Address
         }),
-        tap((response: Address[]) => {
-          this.addresses$.next(response);
+        tap((response: Address) => {
+          let value = this.addresses$.getValue();
+          value.push(response);
+          this.addresses$.next(value);
         })
       );
 

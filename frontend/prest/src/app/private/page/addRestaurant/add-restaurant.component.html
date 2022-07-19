@@ -1,0 +1,47 @@
+<ng-container *ngIf="authService.isAuthenticated$">
+  <form class="container-fluid p-5" [style.max-width]="'350px'" [formGroup]="formRestaurant" (submit)="submit()">
+    <img class="mb-4" src="assets/images/logo.png" alt="logo Prest" width="130" height="130">
+    <h1 class="h2 mb-3 fw-normal">Connection</h1>
+
+    <div class="form-floating">
+      <input class="form-control" id="label" [name]="'label'" formControlName="label">
+      <label for="label" class="h5">Nom du restaurant :</label>
+    </div>
+    <div class="form-floating">
+      <input class="form-control" id="description" [name]="'description'" formControlName="description">
+      <label for="description" class="h5">Description du restaurant :</label>
+    </div>
+    <div class="form-floating">
+      <input class="form-control" id="country" [name]="'country'" formControlName="country">
+      <label for="country" class="h5">Pays :</label>
+    </div>
+    <div class="form-floating">
+      <input class="form-control" id="town" [name]="'town'" formControlName="town">
+      <label for="town" class="h5">Ville :</label>
+    </div>
+    <div class="form-floating">
+      <input class="form-control" id="zip" [name]="'zip'" formControlName="zip">
+      <label for="zip" class="h5">Code postal :</label>
+    </div>
+    <div class="form-floating">
+      <input class="form-control" id="road" [name]="'road'" formControlName="road">
+      <label for="road" class="h5">Rue :</label>
+    </div>
+    <div class="form-floating">
+      <input class="form-control" id="roadNumber" [name]="'roadNumber'" formControlName="roadNumber">
+      <label for="roadNumber" class="h5">Numéro de rue :</label>
+    </div>
+    <div class="form-floating">
+      <input class="form-control" id="roadBox" [name]="'roadBox'" formControlName="roadBox">
+      <label for="roadBox" class="h5">Boîte :</label>
+    </div>
+    <input type="file" (change)="onMenuChange($event)"/>
+    <input type="file" (change)="onImageChange($event)"/>
+
+    <button class="w-100 btn btn-lg btn-primary mt-3" type="submit" [disabled]="formRestaurant.invalid">Inscrire le restaurant</button>
+  </form>
+</ng-container>
+
+
+categories
+

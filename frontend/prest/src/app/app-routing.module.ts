@@ -7,6 +7,7 @@ import {PublicGuard, SecurityGuard} from "./security/guard";
 import {ProfileComponent} from "./public/public/profile/profile.component";
 import {ModifyUserInformationsComponent} from "./private/page/modify-user-informations/modify-user-informations.component";
 import {NotFoundComponent} from "@notFound/not-found/not-found.component";
+import {AddRestaurantComponent} from "./private/page/addRestaurant/add-restaurant.component";
 
 const routes: Routes = [
   {
@@ -43,6 +44,12 @@ const routes: Routes = [
   {
     path:"modifyUser/:id",
     component: ModifyUserInformationsComponent,
+    pathMatch: "full",
+    canActivate: [SecurityGuard]
+  },
+  {
+    path:"add-restaurant",
+    component: AddRestaurantComponent,
     pathMatch: "full",
     canActivate: [SecurityGuard]
   },

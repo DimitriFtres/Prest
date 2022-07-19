@@ -3,7 +3,7 @@ package be.prest.Authentification.service;
 import be.prest.Authentification.entity.*;
 import be.prest.Authentification.entity.payload.*;
 import be.prest.Authentification.repository.*;
-import be.prest.ServiceAPI.Common.*;
+import be.prest.Controller.Common.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

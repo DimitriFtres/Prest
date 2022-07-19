@@ -1,5 +1,6 @@
 <app-header></app-header>
-<app-image-presentation [url]="'https://cdn.pixabay.com/photo/2016/11/18/14/05/brick-wall-1834784_960_720.jpg'"
-[pathTo]="'#'"></app-image-presentation>
-<app-list-restaurant [restaurants]="restaurants"></app-list-restaurant>
-<app-footer></app-footer>
+<app-image-presentation [pathTo]="'#'"></app-image-presentation>
+<ng-container *ngIf="restaurants">
+  <app-list-restaurant [restaurants]="restaurants"></app-list-restaurant>
+</ng-container>
+  <app-footer></app-footer>

@@ -6,6 +6,9 @@ import {RestaurantInformationEnum} from "@common/enum";
 import {CommentaryService} from "@service/commentary/commentary.service";
 import {UserService} from "@service/user/user.service";
 import {User} from "@user/User";
+import {NewsRestaurant} from "@newsRestaurant/NewsRestaurant";
+import {NewsRestaurantService} from "@service/newsRestaurant/news-restaurant.service";
+import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-home-restaurant',
@@ -19,10 +22,12 @@ export class HomeRestaurantComponent implements OnInit {
   informationToDisplay?: RestaurantInformationEnum;
   restaurant_id?: string;
   user?: User;
+  image : any;
 
   constructor(public activatedRoute: ActivatedRoute,
               public restaurantService: RestaurantService,
               public commentaryService: CommentaryService,
+              public newsService : NewsRestaurantService,
               public userService: UserService) { }
 
   ngOnInit(): void {
@@ -33,6 +38,7 @@ export class HomeRestaurantComponent implements OnInit {
       this.restaurantService.getDetail(this.restaurant_id.toString()).subscribe(restaurant => {
         this.restaurant = restaurant;
         this.commentaryService.getListFromRestaurant(restaurant.id_restaurant.toString()).subscribe();
+        this.newsService.getListFromRestaurant(restaurant.id_restaurant.toString()).subscribe();
       });
       if(sessionStorage.getItem("user") != null)
       {

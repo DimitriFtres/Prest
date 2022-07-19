@@ -10,7 +10,6 @@ export interface Restaurant {
   menu: string;
   categories: Category[];
   actif: boolean;
-  userRestaurants: UserRestaurant[];
   address: Address;
   image: string;
 }

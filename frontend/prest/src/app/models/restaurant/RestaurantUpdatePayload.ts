@@ -8,10 +8,10 @@ export interface RestaurantUpdatePayload extends Payload
   id_restaurant: number;
   label: string;
   description: string;
-  menu: string;
+  menu: String;
   categories: Category[];
   actif: boolean;
-  userRestaurants: UserRestaurant[];
   address: Address;
-  image: string;
+  image: String;
+  userRestaurants: UserRestaurant[];
 }

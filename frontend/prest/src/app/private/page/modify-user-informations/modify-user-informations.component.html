@@ -1,3 +1,8 @@
 <app-header></app-header>
 <ng-container *ngIf="user">
+  <ng-container *ngFor="let address of user.addresses as addresses">
+    <div>
+      <p [appAddresstoString]="address"></p>
+    </div>
+  </ng-container>
 </ng-container>

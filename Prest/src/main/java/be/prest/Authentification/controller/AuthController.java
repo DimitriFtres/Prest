@@ -4,7 +4,7 @@ import be.prest.Authentification.entity.*;
 import be.prest.Authentification.entity.payload.*;
 import be.prest.Authentification.repository.*;
 import be.prest.Authentification.service.*;
-import be.prest.ServiceAPI.Common.*;
+import be.prest.Controller.Common.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
@@ -47,6 +47,7 @@ public class AuthController {
                     HashMap<String, Object> hmap = new HashMap<String, Object>();
                     hmap.put("user", credential);
                     hmap.put("token", this.tokenService.getToken(request.getEmail(), request.getPassword()));
+                    System.out.println("Token : " + this.tokenService.getToken(request.getEmail(), request.getPassword()).getAccess_token());
                     return new ApiResponse(true, hmap, null);
                 } else {
                     return new ApiResponse(false, null, "api.signin.bad-credentials");

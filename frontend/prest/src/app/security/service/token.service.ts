@@ -31,8 +31,7 @@ export class TokenService {
   }
 
   public isLocalStorageEmpty(): boolean {
-    if(this.localStorage.getItem(TOKEN_KEY) == null && this.localStorage.getItem(REFRESHTOKEN_KEY) == null)
-      return true;
-    return false;
+    return this.localStorage.getItem(TOKEN_KEY) == null && this.localStorage.getItem(REFRESHTOKEN_KEY) == null;
+
   }
 }

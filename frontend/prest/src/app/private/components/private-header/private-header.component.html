@@ -23,6 +23,12 @@
               Modifier vos informations
             </a>
           </li>
+          <li>
+            <a href="/add-restaurant" class="nav-link link-dark text-white">
+              <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+              Ajouter votre restaurant
+            </a>
+          </li>
           <ng-container *ngIf="this.userRestaurantService.userRestaurants$.value.length > 0">
             <li>
               <a href="#" class="nav-link link-dark text-white">

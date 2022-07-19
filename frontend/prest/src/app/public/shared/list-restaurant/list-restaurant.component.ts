@@ -4,6 +4,8 @@ import {Restaurant} from "@restaurant/Restaurant";
 import {FormControl, FormGroup} from "@angular/forms";
 import {Category} from "@category/Category";
 import {BehaviorSubject} from "rxjs";
+import {CommentaryService} from "@service/commentary/commentary.service";
+import {Commentary} from "@commentary/Commentary";
 
 @Component({
   selector: 'app-list-restaurant',
@@ -14,16 +16,18 @@ export class ListRestaurantComponent implements OnInit {
   @Input() restaurants?: Restaurant[];
   @Input() displaySorting:boolean = true;
   restaurants$: BehaviorSubject<Restaurant[]> = new BehaviorSubject<Restaurant[]>([]);
-  restaurantFiltered?: Restaurant[];
+  commentaries?: Commentary[];
   label: string = "";
   city: string = "";
   category: Category = {} as Category;
 
-  constructor(public restaurantService: RestaurantService) { }
+  constructor(public restaurantService: RestaurantService,
+              public commentaryService: CommentaryService) { }
 
   ngOnInit(): void {
-    this.restaurantService.getList().subscribe(restaurants => {
-      this.restaurants$.next(restaurants);
+    this.restaurants$.next(this.restaurants!);
+    this.commentaryService.getList().subscribe(commentaries => {
+      this.commentaries = commentaries;
     });
   }
   labelChange(event: any) {
@@ -62,7 +66,7 @@ export class ListRestaurantComponent implements OnInit {
       if(!category){
         return true;
       }
-      if(restaurant.categories.includes(category)){
+      if(restaurant.categories.map(categories => categories.id_category).includes(category.id_category)){
         return true;
       }
     }

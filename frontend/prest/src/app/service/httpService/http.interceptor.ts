@@ -7,6 +7,7 @@ import {ApiUriEnum} from "@common/enum";
 import {RefreshPayload} from "../../security/model";
 import {ApiResponse} from "@common/ApiResponse";
 import {isNil} from "lodash";
+import {TOKEN_KEY} from "@common/constant";
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,7 @@ export class HttpInterceptorService implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const cloneReq = this.addToken(req);
+    console.log("Pour l'url : " + req.url.toString() + " token envoyé + " + req.headers.get("Authorization"));
     return next.handle(cloneReq).pipe(
       catchError((err: HttpErrorResponse) => {
         return this.handleError(err, cloneReq, next)
@@ -37,12 +39,15 @@ export class HttpInterceptorService implements HttpInterceptor {
           Authorization: `Bearer ${this.auth.tokenService.getToken()}`
         }
       });
+      console.log("Pour l'url : " + req.url.toString() + "bearer + " +this.auth.tokenService.getToken());
     }
     return req;
   }
 
   private handleError(err: HttpErrorResponse, req: HttpRequest<any>, next: HttpHandler): Observable<any> {
     if (this.attemps > 1) {
+      console.log("this.attemps =" + this.attemps);
+      console.log("AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH")
       this.attemps = 0;
       this.auth.navigation.navigateToUnsecure();
       return throwError(err);
@@ -60,6 +65,7 @@ export class HttpInterceptorService implements HttpInterceptor {
           if (!response.result) {
             return throwError(err);
           }
+          console.log("refresh token : " + response.data);
           return this.intercept(req, next);
         }));
       }

@@ -33,18 +33,6 @@ export class HttpService {
     );
   }
 
-  public getWithData(url: string, data : Object) : Observable<any>
-  {
-    return this.http.get(url, data).pipe(
-      catchError((error: { error: { message: any; }; status: any; message: any; }) => {
-        return this.errorHandler(error);
-      }),
-      finalize(() => {
-        this.loadingEmitter.next(false);
-      })
-    );
-  }
-
   public post(url: string, data: PayloadInterface): Observable<any> {
     this.loadingEmitter.next(true);
     return this.http.post(url, data).pipe(

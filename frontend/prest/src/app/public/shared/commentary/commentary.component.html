@@ -5,19 +5,40 @@
           <div class="card">
             <div class="card-body">
               <div class="d-flex flex-start align-items-center justify-content-between">
+
                 <div>
                   <a class="fw-bold text-primary mb-1 h6" [href]="'profile/'+commentary.user.id_user">{{commentary.user.nickname}}</a>
                   <p class="fw-bold text-primary mb-1 h6">Le {{commentary.date | date:'dd/MM/yyyy à hh:mm:ss'}}</p>
                 </div>
-                <star-rating [starType]="'svg'" [rating]="commentary.note" [readOnly]="true" [showHalfStars]="true" [step]="0.5"></star-rating>
+
+
+                <ng-container *ngIf="modifyBehavior.value == false; else modifyStar">
+                  <star-rating [starType]="'svg'" [rating]="commentary.note" [readOnly]="true" [showHalfStars]="true" [step]="0.5"></star-rating>
+                </ng-container>
+                <ng-template #modifyStar>
+                  <star-rating [starType]="'svg'" [rating]="note" [readOnly]="false" [showHalfStars]="true" [step]="0.5" (ratingChange)="ratingChange($event)"></star-rating>
+                </ng-template>
+
               </div>
               <hr/>
-              <p class="mt-3 mb-4 pb-2">{{commentary.text}}</p>
-              <ng-container *ngIf="user && (user!.id_user == commentary.user!.id_user)">
+              <ng-container *ngIf="modifyBehavior.value == false; else modify">
+                <p class="mt-3 mb-4 pb-2">{{commentary.text}}</p>
+              </ng-container>
+              <ng-template #modify>
+                <form class="" style="background-color: #f8f9fa;" [formGroup]="formCommentary">
+                  <textarea class="form-control" id="textAreaExample" rows="4"
+                            style="background: #fff;" [name]="'text'" formControlName="text"></textarea>
+                </form>
+              </ng-template>
+              <ng-container *ngIf="user && (user!.id_user == commentary.user!.id_user) && modifyBehavior.value == false">
                 <div class="d-flex justify-content-end">
-                <button class="btn btn-primary text-white me-3" (click)="modifyCommentary(commentary)">Modifier</button>
-                  <button class="btn btn-danger" (click)="deleteCommentary(commentary)">Supprimer</button>
+                <button class="btn btn-primary text-white me-3" (click)="modifyCommentary()">Modifier</button>
+                  <button class="btn btn-danger" (click)="deleteCommentary()">Supprimer</button>
                 </div>
+              </ng-container>
+              <ng-container *ngIf="modifyBehavior.value == true">
+                <button class="btn btn-primary text-white me-3" (click)="confirmModification()">Modifier le commentaire</button>
+                <button class="btn btn-danger text-white me-3" (click)="cancelModification()">Annuler la modification</button>
               </ng-container>
             </div>
           </div>

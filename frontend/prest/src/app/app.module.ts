@@ -28,6 +28,9 @@ import {HttpInterceptorService} from "@service/httpService/http.interceptor";
 import { PrivateHeaderComponent } from './private/components/private-header/private-header.component';
 import { ProfileComponent } from './public/public/profile/profile.component';
 import { ModifyUserInformationsComponent } from './private/page/modify-user-informations/modify-user-informations.component';
+import { AddNewComponent } from './private/components/add-news/add-new/add-new.component';
+import { RestaurantCardComponent } from './public/shared/restaurantCard/restaurant-card/restaurant-card.component';
+import { AddRestaurantComponent } from './private/page/addRestaurant/add-restaurant.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +49,10 @@ import { ModifyUserInformationsComponent } from './private/page/modify-user-info
     AddresstoStringDirective,
     PrivateHeaderComponent,
     ProfileComponent,
-    ModifyUserInformationsComponent
+    ModifyUserInformationsComponent,
+    AddNewComponent,
+    RestaurantCardComponent,
+    AddRestaurantComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,5 @@
 package be.prest.Authentification.entity.payload;
-import be.prest.ServiceAPI.Common.*;
-import be.prest.ServiceAPI.User.*;
+import be.prest.Controller.Common.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -33,3 +33,6 @@ $color-default-rating: $orange;
 .x-scroll::-webkit-scrollbar-thumb {
   background-color: $primary;
 }
+body{
+  overflow-x: hidden;
+}

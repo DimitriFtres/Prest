@@ -1,6 +1,5 @@
 package be.prest.Authentification.entity;
 
-import be.prest.ServiceAPI.User.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -16,16 +16,10 @@
 <ng-container *ngIf="restaurants">
   <section>
     <div class="d-flex flex-wrap align-items-start justify-content-center">
-      <ng-container *ngFor="let restaurant of restaurants$ | async">
-        <div class="card text-center d-inline-block mx-3 mb-4" style="width: 18rem;">
-          <a href="restaurant/home/{{restaurant.id_restaurant}}" class="text-decoration-none">
-          <img src="{{restaurant.image}}" class="card-img-top" alt="{{restaurant.label}}">
-            <div class="card-body text-decoration-none">
-              <h5 class="card-title text-decoration-none">{{restaurant.label}}</h5>
-              <p class="card-text text-decoration-none text-overflow-ellipsis">{{restaurant.description}}</p>
-            </div>
-          </a>
-        </div>
+      <ng-container *ngIf="commentaries">
+        <ng-container *ngFor="let restaurant of restaurants$ | async">
+          <app-restaurant-card [restaurant]="restaurant" [commentaries]="commentaries"></app-restaurant-card>
+        </ng-container>
       </ng-container>
     </div>
   </section>

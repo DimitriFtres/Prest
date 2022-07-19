@@ -69,7 +69,7 @@ export class NewsRestaurantService extends ApiService{
       .pipe(
         switchMap((response) => {
           if(response.result){
-            return this.getList();
+            return this.getListFromRestaurant(payload.restaurant.id_restaurant.toString());
           } else{
             return of([]);
           }
@@ -87,7 +87,7 @@ export class NewsRestaurantService extends ApiService{
       .pipe(
         switchMap((response) => {
           if(response.result){
-            return this.getList();
+            return this.getListFromRestaurant(payload.restaurant.id_restaurant.toString());
           } else{
             return of([]);
           }

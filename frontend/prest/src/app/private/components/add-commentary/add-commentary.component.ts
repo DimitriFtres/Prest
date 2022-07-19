@@ -9,6 +9,7 @@ import {UserService} from "@service/user/user.service";
 import {switchMap} from "rxjs/operators";
 import {CredentialDto, SigninPayload} from "../../../security/model";
 import {RatingChangeEvent} from "angular-star-rating";
+import {User} from "@user/User";
 
 @Component({
   selector: 'app-add-commentary',
@@ -18,14 +19,14 @@ import {RatingChangeEvent} from "angular-star-rating";
 export class AddCommentaryComponent implements OnInit {
   commentary!: CommentaryAddPayload;
   @Input() restaurant_id!: string;
+  @Input() user!: User;
   note?: number;
   formCommentary: FormGroup = new FormGroup({
-    text: new FormControl('', [Validators.email, Validators.required]),
+    text: new FormControl('', [Validators.required]),
   });
 
   constructor(public commentaryService: CommentaryService,
               public restaurantService: RestaurantService,
-              public userService: UserService,
               public authService: AuthService) { }
 
   ngOnInit(): void {
@@ -35,18 +36,15 @@ export class AddCommentaryComponent implements OnInit {
 
   submit(): void {
     this.restaurantService.getDetail(this.restaurant_id).subscribe(restaurant => {
-      if(sessionStorage.getItem("user") != null)
-        this.userService.getDetailFromEmail(sessionStorage.getItem("user")!).subscribe(user => {
-          const commentaryPayload = {
-            text: this.formCommentary.value.text,
-            note: this.note,
-            date: new Date(),
-            restaurant: restaurant,
-            user: user,
-            actif: true
-          } as CommentaryAddPayload
-          this.commentaryService.create(commentaryPayload).subscribe( () => this.formCommentary.reset());
-        });
+      const commentaryPayload = {
+        text: this.formCommentary.value.text,
+        note: this.note,
+        date: new Date(),
+        restaurant: restaurant,
+        user: this.user,
+        actif: true
+      } as CommentaryAddPayload
+      this.commentaryService.create(commentaryPayload).subscribe( () => this.formCommentary.reset());
     });
   }
 

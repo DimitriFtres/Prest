@@ -8,4 +8,6 @@ export interface NewsRestaurant {
   restaurant: Restaurant;
   user: User;
   date: Date;
+  actif: boolean;
+
 }

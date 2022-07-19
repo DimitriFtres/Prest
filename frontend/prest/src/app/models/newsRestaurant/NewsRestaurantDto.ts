@@ -9,5 +9,6 @@ export interface NewsRestaurantDto extends Dto
   restaurant: Restaurant;
   user: User;
   date: Date;
+  actif: boolean;
 }
 

@@ -21,6 +21,6 @@ export class UserComponent implements OnInit {
 
 
   submit(): void {
-    this.authService.signin(this.formCredential.value as SigninPayload).subscribe(signin => console.log(signin));
+    this.authService.signin(this.formCredential.value as SigninPayload).subscribe();
   }
 }

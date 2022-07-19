@@ -8,4 +8,5 @@ export interface NewsRestaurantAddPayload extends Payload
   restaurant: Restaurant;
   user: User;
   date: Date;
+  actif: boolean;
 }

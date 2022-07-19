@@ -11,7 +11,6 @@ export interface RestaurantDto extends Dto
   menu: string;
   categories: Category[];
   actif: boolean;
-  userRestaurants: UserRestaurant[];
   address: Address;
   image: string;
 }

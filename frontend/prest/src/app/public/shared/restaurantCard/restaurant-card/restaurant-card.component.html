@@ -1,0 +1,15 @@
+<div class="card text-center d-inline-block mx-3 mb-4" style="width: 18rem;">
+  <a href="restaurant/home/{{restaurant.id_restaurant}}" class="text-decoration-none">
+    <ng-container *ngIf="image">
+      <img [src]="image" class="card-img-top" alt="{{restaurant.label}}">
+    </ng-container>
+
+    <div class="card-body text-decoration-none">
+      <h5 class="card-title text-decoration-none">{{restaurant.label}}</h5>
+      <ng-container *ngIf="average">
+        <star-rating [starType]="'svg'" [rating]="average" [readOnly]="true" [showHalfStars]="true" [step]="0.5"></star-rating>
+      </ng-container>
+      <p class="card-text text-decoration-none text-overflow-ellipsis text-black">{{restaurant.description}}</p>
+    </div>
+  </a>
+</div>

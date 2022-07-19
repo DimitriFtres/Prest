@@ -3,7 +3,7 @@ package be.prest.Authentification.service;
 
 import be.prest.Authentification.entity.*;
 import be.prest.Authentification.entity.payload.*;
-import be.prest.ServiceAPI.Common.*;
+import be.prest.Controller.Common.*;
 
 public interface CredentialService {
 

@@ -1,7 +1,9 @@
 <app-header></app-header>
 
 <ng-container *ngIf="restaurant">
-  <app-image-presentation [url]="restaurant.image"></app-image-presentation>
+  <ng-container *ngIf="restaurant.image">
+    <app-image-presentation [url]="restaurant.image"></app-image-presentation>
+  </ng-container>
   <div class="d-flex flex-nowrap my-2 justify-content-center">
     <div (click)="informationSelected(undefined)" class="d-flex align-items-center">
       <p class="h4 px-3 mx-2 btn btn-outline-primary my-0">Accueil</p>
@@ -13,12 +15,16 @@
     </ng-container>
   </div>
 <hr class="bg-primary my-0"/>
-  <ng-container *ngIf="informationToDisplay == undefined">
-    <app-news [restaurant_id]="restaurant_id!"></app-news>
-    <ng-container *ngFor="let commentary of commentaryService.commentaries$ | async">
-      <app-commentary [commentary]="commentary" [user]="user"></app-commentary>
-    </ng-container>
-    <app-add-commentary [restaurant_id]="restaurant_id!"></app-add-commentary>
+  <ng-container *ngIf="informationToDisplay == undefined && user">
+      <app-add-new [restaurant_id]="restaurant_id!" [user]="user"></app-add-new>
+      <ng-container *ngFor="let news of newsService.newsRestaurants$ | async">
+        <app-news [restaurant_id]="restaurant_id!" [news]="news" [user]="user"></app-news>
+      </ng-container>
+      <ng-container *ngFor="let commentary of commentaryService.commentaries$ | async">
+        <app-commentary [commentary]="commentary" [user]="user"></app-commentary>
+      </ng-container>
+      <app-add-commentary [restaurant_id]="restaurant_id!" [user]="user"></app-add-commentary>
+    <hr/>
   </ng-container>
 
   <ng-container *ngIf="informationToDisplay != null">

@@ -14,6 +14,10 @@ export class ModifyUserInformationsComponent implements OnInit {
               public userService: UserService) { }
 
   ngOnInit(): void {
+    if(this.url.snapshot.params['id'] != null)
+    this.userService.getDetail(this.url.snapshot.params['id']).subscribe(user => {
+      this.user = user;
+    });
   }
 
 }

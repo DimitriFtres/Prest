@@ -1,6 +1,7 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {Restaurant} from "@restaurant/Restaurant";
 import {RestaurantInformationEnum} from "@common/enum";
+import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-information',
@@ -12,9 +13,10 @@ export class InformationComponent implements OnInit, OnChanges {
   @Input() information!: RestaurantInformationEnum;
   @Input() restaurant!: Restaurant;
 
-  informationToDisplay?: String;
+  informationToDisplay?: any;
+  private readonly imageType : string = 'data:image/PNG;base64,';
 
-  constructor() {
+  constructor(private sanitizer: DomSanitizer) {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -30,7 +32,8 @@ export class InformationComponent implements OnInit, OnChanges {
     }
     if(this.information == RestaurantInformationEnum.MENU)
     {
-      this.informationToDisplay = "Afficher le menu voir pdf et img";
+      this.informationToDisplay = this.sanitizer.bypassSecurityTrustUrl(this.imageType + this.restaurant.menu);
+
     }
     if(this.information == RestaurantInformationEnum.DESCRIPTION)
     {
